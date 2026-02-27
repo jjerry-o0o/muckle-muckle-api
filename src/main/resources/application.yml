@@ -1,0 +1,22 @@
+
+server:
+  port: 8080
+  shutdown: graceful
+
+spring:
+  application:
+    name: mickle-muckle-api
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+
+  profiles:
+    active: h2
+
+  config:
+    import:
+      - classpath:/config/application-h2.yml
+
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
