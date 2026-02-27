@@ -1,0 +1,21 @@
+-- ledger_category
+INSERT INTO ledger_category (name, sort_order) VALUES
+  ('식비', 1),
+  ('교통', 2),
+  ('주거/통신', 3),
+  ('쇼핑', 4),
+  ('급여', 5);
+
+-- payment_method
+INSERT INTO payment_method (name, method_type) VALUES
+  ('현금', 'C'),
+  ('체크카드', 'D'),
+  ('신용카드', 'R');
+
+-- ledger_entry
+INSERT INTO ledger_entry (entry_date, entry_type, amount, title, memo, category_id) VALUES
+  ('2026-02-20', 'E', 12000, '점심', '회사 구내식당', 1),
+  ('2026-02-21', 'E', 4500, '버스', '출퇴근 교통비', 2),
+  ('2026-02-22', 'E', 30000, '장보기', '주말 마트', 1),
+  ('2026-02-23', 'E', 8000, '통신요금', '월 요금', 3),
+  ('2026-02-24', 'I', 2500000, '급여', '2월 급여', 5);
