@@ -1,8 +1,6 @@
 package com.future.micklemuckle.modules.ledger.dto;
 
-import com.future.micklemuckle.modules.ledger.entity.LedgerCategory;
 import com.future.micklemuckle.modules.ledger.entity.LedgerEntry;
-import com.future.micklemuckle.modules.ledger.entity.PaymentMethod;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -21,14 +19,12 @@ public class LedgerEntryDto {
 
     private Long categoryId;
     private Long paymentId;
-//    private LedgerCategory category;
-//    private PaymentMethod payment;
 
     public static LedgerEntryDto fromEntity(LedgerEntry entity) {
-        LedgerEntryDto dto = LedgerEntryDto.builder()
+        return LedgerEntryDto.builder()
                 .id(entity.getId())
-                .entryDate(entity.getEntry_date())
-                .entryType(entity.getEntry_type())
+                .entryDate(entity.getEntryDate())
+                .entryType(entity.getEntryType())
                 .amount(entity.getAmount())
                 .title(entity.getTitle())
                 .memo(entity.getMemo())

@@ -26,9 +26,9 @@ public class LedgerEntry extends BaseTimeEntity {
     private Long id;
 
     @NotNull
-    private LocalDate entry_date;
+    private LocalDate entryDate;
     @NotNull
-    private String entry_type;
+    private String entryType;
     @NotNull
     private Integer amount;
     @NotNull
