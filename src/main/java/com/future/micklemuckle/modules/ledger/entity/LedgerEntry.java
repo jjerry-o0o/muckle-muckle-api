@@ -1,9 +1,11 @@
 package com.future.micklemuckle.modules.ledger.entity;
 
 import com.future.micklemuckle.common.BaseTimeEntity;
+import com.future.micklemuckle.modules.categories.entity.Category;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -22,8 +24,7 @@ public class LedgerEntry extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "entry_id")
-    private Long id;
+    private Long entryId;
 
     @NotNull
     private LocalDate entryDate;
@@ -37,10 +38,19 @@ public class LedgerEntry extends BaseTimeEntity {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    private LedgerCategory category;
+    private Category category;
 
     @ManyToOne
     @JoinColumn(name = "payment_method_id")
     private PaymentMethod payment;
 
+    @Builder
+    public LedgerEntry(LocalDate entryDate, String entryType, Integer amount, String title, String memo ) {
+        this.entryDate = entryDate;
+        this.entryType = entryType;
+        this.amount = amount;
+        this.title = title;
+        this.memo = memo;
+//        this.category = ;
+    }
 }

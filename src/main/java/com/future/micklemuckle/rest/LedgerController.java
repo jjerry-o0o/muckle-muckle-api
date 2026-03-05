@@ -3,10 +3,7 @@ package com.future.micklemuckle.rest;
 import com.future.micklemuckle.modules.ledger.dto.LedgerEntryDto;
 import com.future.micklemuckle.modules.ledger.service.LedgerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,13 +20,13 @@ public class LedgerController {
 
     private final LedgerService ledgerService;
 
-    @GetMapping(value = "/")
-    public List<LedgerEntryDto> getLedgerEntries(@RequestParam(required = false) String entryType, @RequestParam(required = false) String year, @RequestParam(required = false) String month) {
-        if (entryType == null) {
-            return ledgerService.getLedgerEntryByEntryDate(year, month);
-        } else {
-            return ledgerService.getLedgerEntryByEntryType(entryType);
-        }
+    @GetMapping("/{id}")
+    public LedgerEntryDto getLedgerEntry(@PathVariable String id){
+        return ledgerService.getLedgerEntryByEntryId(id);
     }
 
+    @PostMapping("/")
+    public String saveLedgerEntry(@RequestBody LedgerEntryDto ledgerEntryDto){
+
+    }
 }

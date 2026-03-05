@@ -16,10 +16,7 @@ import java.util.List;
  */
 public interface LedgerRepository extends JpaRepository<LedgerEntry, Long> {
 
-    @Query("SELECT a FROM LedgerEntry a WHERE a.entryType = :entryType")
-    List<LedgerEntry> findLedgerEntryByEntryType(@Param("entryType") String entryType);
-
-    @Query("SELECT a FROM LedgerEntry a WHERE a.entryDate >= :startDate AND a.entryDate < :endDate")
-    List<LedgerEntry> findLedgerEntriesByEntryDate(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+    @Query("SELECT a FROM LedgerEntry a WHERE a.entryId = :id")
+    LedgerEntry findLedgerEntryByEntryId(@Param("id") String id);
 
 }

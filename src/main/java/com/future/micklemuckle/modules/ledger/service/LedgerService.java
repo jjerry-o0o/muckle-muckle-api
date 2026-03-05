@@ -1,6 +1,8 @@
 package com.future.micklemuckle.modules.ledger.service;
 
+import com.future.micklemuckle.modules.categories.entity.Category;
 import com.future.micklemuckle.modules.ledger.dto.LedgerEntryDto;
+import com.future.micklemuckle.modules.ledger.entity.LedgerEntry;
 import com.future.micklemuckle.modules.ledger.repository.LedgerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,17 +22,17 @@ public class LedgerService {
 
     private final LedgerRepository ledgerRepository;
 
-    public List<LedgerEntryDto> getLedgerEntryByEntryType(String entryType) {
-        return ledgerRepository.findLedgerEntryByEntryType(entryType)
-                .stream()
-                .map(LedgerEntryDto::fromEntity)
-                .toList();
+    public LedgerEntryDto getLedgerEntryByEntryId(String id) {
+        return LedgerEntryDto.fromEntity(ledgerRepository.findLedgerEntryByEntryId(id));
     }
 
-    public List<LedgerEntryDto> getLedgerEntryByEntryDate(String year, String month) {
-        LocalDate startDate = LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), 1);
-        LocalDate endDate = startDate.plusMonths(1);
-        return ledgerRepository.findLedgerEntriesByEntryDate(startDate, endDate)
-                .stream().map(LedgerEntryDto::fromEntity).toList();
+    public void saveLedgerEntry(LedgerEntryDto reqDto) {
+
+        Category category = null;
+        if (reqDto.getCategoryId() != null) {
+//            category = getLedgerEntryByEntryId(reqDto.getCategoryId());
+        }
+
     }
+
 }

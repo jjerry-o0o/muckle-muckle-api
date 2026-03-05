@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Builder
 public class LedgerEntryDto {
 
-    private final Long id;
+    private final Long entryId;
     private final LocalDate entryDate;
     private final String entryType;
     private final int amount;
@@ -22,7 +22,7 @@ public class LedgerEntryDto {
 
     public static LedgerEntryDto fromEntity(LedgerEntry entity) {
         return LedgerEntryDto.builder()
-                .id(entity.getId())
+                .entryId(entity.getEntryId())
                 .entryDate(entity.getEntryDate())
                 .entryType(entity.getEntryType())
                 .amount(entity.getAmount())
@@ -30,6 +30,16 @@ public class LedgerEntryDto {
                 .memo(entity.getMemo())
                 .categoryId(entity.getCategory() != null ? entity.getCategory().getId() : null)
                 .paymentId(entity.getPayment() != null ? entity.getPayment().getId() : null)
+                .build();
+    }
+
+    public LedgerEntry toEntity() {
+        return LedgerEntry.builder()
+                .entryDate(entryDate)
+                .entryType(entryType)
+                .amount(amount)
+                .title(title)
+                .memo(memo)
                 .build();
     }
 }
