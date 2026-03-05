@@ -1,4 +1,4 @@
-package com.future.micklemuckle.modules.ledger.entity;
+package com.future.micklemuckle.modules.categories.entity;
 
 import com.future.micklemuckle.common.BaseTimeEntity;
 import jakarta.persistence.*;
@@ -16,15 +16,18 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class LedgerCategory extends BaseTimeEntity {
+public class Category extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
-    private Long id;
+    private Long categoryId;
 
     @NotNull
     private String name;
     @NotNull
+    private String color;
+    @NotNull
     private Integer sortOrder;
+
 }
