@@ -1,16 +1,16 @@
 -- ledger_category
-INSERT INTO ledger_category (name, sort_order) VALUES
-  ('식비', 1),
-  ('교통', 2),
-  ('주거/통신', 3),
-  ('쇼핑', 4),
-  ('급여', 5);
+INSERT INTO ledger_category (name, color, sort_order) VALUES
+  ('식비', '#262626', 1),
+  ('교통', '#262626', 2),
+  ('주거/통신', '#262626', 3),
+  ('쇼핑', '#262626', 4),
+  ('급여', '#262626', 5);
 
 -- payment_method
-INSERT INTO payment_method (name, method_type) VALUES
-  ('현금', 'C'),
-  ('체크카드', 'D'),
-  ('신용카드', 'R');
+INSERT INTO payment_method (name, color, method_type) VALUES
+  ('현금', '#262626', 'C'),
+  ('체크카드', '#262626', 'D'),
+  ('신용카드', '#262626', 'R');
 
 -- ledger_entry
 INSERT INTO ledger_entry (entry_date, entry_type, amount, title, memo, category_id) VALUES
