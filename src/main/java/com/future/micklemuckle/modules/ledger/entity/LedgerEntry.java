@@ -56,4 +56,17 @@ public class LedgerEntry extends BaseTimeEntity {
         this.category = category;
         this.payment = payment;
     }
+
+    public void update(LocalDate entryDate, String entryType, Integer amount, String title, Category category, PaymentMethod payment) {
+        this.entryDate = entryDate;
+        this.entryType = entryType;
+        this.amount = amount;
+        this.title = title;
+        this.category = category;
+        this.payment = payment;
+    }
+
+    public void changeMemo(String memo) {
+        this.memo = memo;
+    }
 }
