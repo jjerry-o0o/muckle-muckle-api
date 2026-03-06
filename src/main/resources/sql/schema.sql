@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS ledger_category (
 CREATE TABLE IF NOT EXISTS payment_method (
     payment_method_id       BIGINT          AUTO_INCREMENT PRIMARY KEY,
     name                    VARCHAR(50)     NOT NULL, -- 예: 현금, 신한카드, KB카드
-    color                   VARCHAR(7)      NOR NULL, -- 예 : #RRGGBB
+    color                   VARCHAR(7)      NOT NULL, -- 예 : #RRGGBB
     method_type             VARCHAR(1)      NOT NULL, -- C.현금 / A.계좌이체 / D.체크카드 / R.신용카드 / E.기타>상품권,기프티콘 등
     created_at              TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at              TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -25,8 +25,8 @@ CREATE TABLE IF NOT EXISTS ledger_entry (
     amount                  INT             NOT NULL,
     title                   VARCHAR(100)    NOT NULL,
     memo                    VARCHAR(500),
-    category_id             BIGINT,
-    payment_method_id       BIGINT,
+    category_id             BIGINT          NOT NULL,
+    payment_method_id       BIGINT          NOT NULL,
     created_at              TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at              TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
