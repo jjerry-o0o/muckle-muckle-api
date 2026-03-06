@@ -21,7 +21,7 @@ public class CategoryDto {
 
     public static CategoryDto fromEntity(Category entity) {
         return CategoryDto.builder()
-                .categoryId(entity.getCategoryId())
+                .categoryId(entity.getId())
                 .name(entity.getName())
                 .color(entity.getColor())
                 .sortOrder(entity.getSortOrder())

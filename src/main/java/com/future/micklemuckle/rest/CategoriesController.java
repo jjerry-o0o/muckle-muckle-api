@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 /**
  * CategoriesController
  *
@@ -25,7 +23,7 @@ public class CategoriesController {
 
     @GetMapping("/{id}")
     public CategoryDto getCategory(@PathVariable String id) {
-        return categoriesService.getCategoryByCategoryId(id);
+        return categoriesService.getCategoryByCategoryId(Long.parseLong(id));
     }
 
 }
