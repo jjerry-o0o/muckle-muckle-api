@@ -1,7 +1,8 @@
 package com.future.micklemuckle.modules.ledger.entity;
 
-import com.future.micklemuckle.common.BaseTimeEntity;
+import com.future.micklemuckle.common.entity.BaseTimeEntity;
 import com.future.micklemuckle.modules.categories.entity.Category;
+import com.future.micklemuckle.modules.payment.entity.PaymentMethod;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
@@ -24,7 +25,8 @@ public class LedgerEntry extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long entryId;
+    @Column(name = "entry_id")
+    private Long id;
 
     @NotNull
     private LocalDate entryDate;
@@ -45,12 +47,13 @@ public class LedgerEntry extends BaseTimeEntity {
     private PaymentMethod payment;
 
     @Builder
-    public LedgerEntry(LocalDate entryDate, String entryType, Integer amount, String title, String memo ) {
+    public LedgerEntry(LocalDate entryDate, String entryType, Integer amount, String title, String memo, Category category, PaymentMethod payment ) {
         this.entryDate = entryDate;
         this.entryType = entryType;
         this.amount = amount;
         this.title = title;
         this.memo = memo;
-//        this.category = ;
+        this.category = category;
+        this.payment = payment;
     }
 }

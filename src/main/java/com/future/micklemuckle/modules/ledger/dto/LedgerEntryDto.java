@@ -22,7 +22,7 @@ public class LedgerEntryDto {
 
     public static LedgerEntryDto fromEntity(LedgerEntry entity) {
         return LedgerEntryDto.builder()
-                .entryId(entity.getEntryId())
+                .entryId(entity.getId())
                 .entryDate(entity.getEntryDate())
                 .entryType(entity.getEntryType())
                 .amount(entity.getAmount())

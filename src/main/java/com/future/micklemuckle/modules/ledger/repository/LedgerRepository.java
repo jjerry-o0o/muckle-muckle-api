@@ -5,9 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.time.LocalDate;
-import java.util.List;
-
 /**
  * LedgerRepository
  *
@@ -16,7 +13,7 @@ import java.util.List;
  */
 public interface LedgerRepository extends JpaRepository<LedgerEntry, Long> {
 
-    @Query("SELECT a FROM LedgerEntry a WHERE a.entryId = :id")
-    LedgerEntry findLedgerEntryByEntryId(@Param("id") String id);
+    @Query("SELECT a FROM LedgerEntry a WHERE a.id = :id")
+    LedgerEntry findLedgerEntryByEntryId(@Param("id") Long id);
 
 }

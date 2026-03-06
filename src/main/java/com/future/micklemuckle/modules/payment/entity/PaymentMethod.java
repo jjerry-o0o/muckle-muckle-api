@@ -1,6 +1,6 @@
-package com.future.micklemuckle.modules.ledger.entity;
+package com.future.micklemuckle.modules.payment.entity;
 
-import com.future.micklemuckle.common.BaseTimeEntity;
+import com.future.micklemuckle.common.entity.BaseTimeEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
@@ -25,6 +25,8 @@ public class PaymentMethod extends BaseTimeEntity {
 
     @NotNull
     private String name;
+    @NotNull
+    private String color;
     @NotNull
     private String methodType;
 }
