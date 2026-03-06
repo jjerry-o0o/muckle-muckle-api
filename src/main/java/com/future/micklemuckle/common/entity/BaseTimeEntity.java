@@ -1,4 +1,4 @@
-package com.future.micklemuckle.common;
+package com.future.micklemuckle.common.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.EntityListeners;
