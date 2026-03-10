@@ -1,11 +1,15 @@
 package com.future.micklemuckle.rest;
 
-import com.future.micklemuckle.modules.ledger.dto.CreateLedgerEntryReqDto;
-import com.future.micklemuckle.modules.ledger.dto.LedgerEntryResDto;
-import com.future.micklemuckle.modules.ledger.dto.UpdateLedgerEntryReqDto;
+import com.future.micklemuckle.modules.ledger.dto.CreateLedgerEntryRequest;
+import com.future.micklemuckle.modules.ledger.dto.LedgerEntryDetailResponse;
+import com.future.micklemuckle.modules.ledger.dto.LedgerEntrySummaryResponse;
+import com.future.micklemuckle.modules.ledger.dto.UpdateLedgerEntryRequest;
 import com.future.micklemuckle.modules.ledger.service.LedgerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Slice;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 수입/지출 항목 Controller
@@ -21,17 +25,27 @@ public class LedgerController {
     private final LedgerService ledgerService;
 
     @GetMapping("/{id}")
-    public LedgerEntryResDto getLedgerEntry(@PathVariable Long id){
+    public LedgerEntryDetailResponse getLedgerEntry(@PathVariable Long id){
         return ledgerService.getLedgerEntryByEntryId(id);
     }
 
     @PostMapping("/")
-    public Long saveLedgerEntry(@RequestBody CreateLedgerEntryReqDto reqDto){
+    public Long saveLedgerEntry(@RequestBody CreateLedgerEntryRequest reqDto){
         return ledgerService.saveLedgerEntry(reqDto);
     }
 
     @PatchMapping("/{id}")
-    public Long updateLedgerEntry(@PathVariable Long id, @RequestBody UpdateLedgerEntryReqDto reqDto){
+    public Long updateLedgerEntry(@PathVariable Long id, @RequestBody UpdateLedgerEntryRequest reqDto){
         return ledgerService.updateLedgerEntry(id, reqDto);
+    }
+
+    @GetMapping("/month/{targetYm}")
+    public List<LedgerEntrySummaryResponse> getLedgerEntriesByMonth(@PathVariable String targetYm){
+        return ledgerService.getLedgerEntriesByMonth(targetYm);
+    }
+
+    @GetMapping("/List")
+    public Slice<LedgerEntryDetailResponse> getLedgerEntriesByPagination(int pageNum){
+        return ledgerService.getLedgerEntriesByPagination(pageNum);
     }
 }

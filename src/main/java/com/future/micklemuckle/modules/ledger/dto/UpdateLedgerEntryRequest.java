@@ -12,7 +12,7 @@ import java.time.LocalDate;
  * @date : 2026-03-06
  */
 @Getter
-public class UpdateLedgerEntryReqDto {
+public class UpdateLedgerEntryRequest {
 
     private LocalDate entryDate;
     private String entryType;

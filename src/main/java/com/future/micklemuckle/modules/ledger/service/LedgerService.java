@@ -3,16 +3,25 @@ package com.future.micklemuckle.modules.ledger.service;
 import com.future.micklemuckle.common.exception.NotFoundException;
 import com.future.micklemuckle.modules.categories.entity.Category;
 import com.future.micklemuckle.modules.categories.repository.CategoriesRepository;
-import com.future.micklemuckle.modules.ledger.dto.CreateLedgerEntryReqDto;
-import com.future.micklemuckle.modules.ledger.dto.LedgerEntryResDto;
-import com.future.micklemuckle.modules.ledger.dto.UpdateLedgerEntryReqDto;
+import com.future.micklemuckle.modules.ledger.dto.CreateLedgerEntryRequest;
+import com.future.micklemuckle.modules.ledger.dto.LedgerEntryDetailResponse;
+import com.future.micklemuckle.modules.ledger.dto.LedgerEntrySummaryResponse;
+import com.future.micklemuckle.modules.ledger.dto.UpdateLedgerEntryRequest;
 import com.future.micklemuckle.modules.ledger.entity.LedgerEntry;
 import com.future.micklemuckle.modules.ledger.repository.LedgerRepository;
 import com.future.micklemuckle.modules.payment.entity.PaymentMethod;
 import com.future.micklemuckle.modules.payment.repository.PaymentMethodRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.util.List;
 
 /**
  * LedgerService
@@ -28,14 +37,14 @@ public class LedgerService {
     private final CategoriesRepository categoriesRepository;
     private final PaymentMethodRepository paymentMethodRepository;
 
-    public LedgerEntryResDto getLedgerEntryByEntryId(Long id) {
+    public LedgerEntryDetailResponse getLedgerEntryByEntryId(Long id) {
         LedgerEntry ledgerEntry = ledgerRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("LedgerEntry not found"));
-        return LedgerEntryResDto.fromEntity(ledgerEntry);
+        return LedgerEntryDetailResponse.fromEntity(ledgerEntry);
     }
 
     @Transactional
-    public Long saveLedgerEntry(CreateLedgerEntryReqDto reqDto) {
+    public Long saveLedgerEntry(CreateLedgerEntryRequest reqDto) {
 
         Category category = getCategory(reqDto.getCategoryId());
         PaymentMethod payment = getPaymentMethod(reqDto.getPaymentId());
@@ -54,7 +63,7 @@ public class LedgerService {
     }
 
     @Transactional
-    public Long updateLedgerEntry(Long id, UpdateLedgerEntryReqDto req) {
+    public Long updateLedgerEntry(Long id, UpdateLedgerEntryRequest req) {
 
         LedgerEntry entry = ledgerRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("LedgerEntry not found"));
@@ -88,4 +97,21 @@ public class LedgerService {
         return payment;
     }
 
+    public List<LedgerEntrySummaryResponse> getLedgerEntriesByMonth(String targetYm) {
+        YearMonth ym = YearMonth.parse(targetYm);
+
+        LocalDate startDate = ym.atDay(1);
+        LocalDate endDate = ym.atEndOfMonth();
+
+        return ledgerRepository.findByEntryDateBetween(startDate, endDate)
+                .stream()
+                .map(LedgerEntrySummaryResponse::fromEntity)
+                .toList();
+    }
+
+    public Slice<LedgerEntryDetailResponse> getLedgerEntriesByPagination(int pageNum) {
+        Pageable pageable = PageRequest.of(pageNum, 20, Sort.by("entryDate").descending());
+                return ledgerRepository.findWithSlice(pageable)
+                        .map(LedgerEntryDetailResponse::fromEntity);
+    }
 }
