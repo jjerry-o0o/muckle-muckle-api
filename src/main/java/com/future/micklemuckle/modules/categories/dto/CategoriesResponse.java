@@ -9,7 +9,7 @@ import com.future.micklemuckle.modules.categories.entity.Category;
  * @date : 2026-03-05
  */
 public record CategoriesResponse (
-        Long categoryId,
+        Long id,
         String name,
         String color,
         int sortOrder
