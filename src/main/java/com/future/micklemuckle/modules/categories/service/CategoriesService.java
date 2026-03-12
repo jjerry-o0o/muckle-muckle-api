@@ -1,7 +1,7 @@
 package com.future.micklemuckle.modules.categories.service;
 
 import com.future.micklemuckle.common.exception.NotFoundException;
-import com.future.micklemuckle.modules.categories.dto.CategoryDto;
+import com.future.micklemuckle.modules.categories.dto.CategoriesResponse;
 import com.future.micklemuckle.modules.categories.entity.Category;
 import com.future.micklemuckle.modules.categories.repository.CategoriesRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,10 +21,17 @@ public class CategoriesService {
 
     private final CategoriesRepository categoriesRepository;
 
-    public CategoryDto getCategoryByCategoryId(Long id) {
+    public CategoriesResponse findById(Long id) {
         Category category = categoriesRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("category not found"));
 
-        return CategoryDto.fromEntity(category);
+        return CategoriesResponse.fromEntity(category);
+    }
+
+    public List<CategoriesResponse> findAll() {
+        return categoriesRepository.findAll()
+                .stream()
+                .map(CategoriesResponse::fromEntity)
+                .toList();
     }
 }
