@@ -44,8 +44,8 @@ public class LedgerController {
         return ledgerService.getLedgerEntriesByMonth(targetYm);
     }
 
-    @GetMapping("/List")
-    public Slice<LedgerEntryDetailResponse> getLedgerEntriesByPagination(int pageNum){
+    @GetMapping("/List/{pageNum}")
+    public Slice<LedgerEntryDetailResponse> getLedgerEntriesByPagination(@PathVariable int pageNum){
         return ledgerService.getLedgerEntriesByPagination(pageNum);
     }
 }
