@@ -2,7 +2,7 @@ package com.future.micklemuckle.modules.ledger.entity;
 
 import com.future.micklemuckle.common.entity.BaseTimeEntity;
 import com.future.micklemuckle.modules.categories.entity.Category;
-import com.future.micklemuckle.modules.payment.entity.PaymentMethod;
+import com.future.micklemuckle.modules.paymentMethod.entity.PaymentMethod;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;

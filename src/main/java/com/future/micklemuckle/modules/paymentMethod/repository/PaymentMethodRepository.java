@@ -1,6 +1,6 @@
-package com.future.micklemuckle.modules.payment.repository;
+package com.future.micklemuckle.modules.paymentMethod.repository;
 
-import com.future.micklemuckle.modules.payment.entity.PaymentMethod;
+import com.future.micklemuckle.modules.paymentMethod.entity.PaymentMethod;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

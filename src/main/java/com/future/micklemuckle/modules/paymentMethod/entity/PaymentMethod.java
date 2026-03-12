@@ -1,4 +1,4 @@
-package com.future.micklemuckle.modules.payment.entity;
+package com.future.micklemuckle.modules.paymentMethod.entity;
 
 import com.future.micklemuckle.common.entity.BaseTimeEntity;
 import jakarta.persistence.*;

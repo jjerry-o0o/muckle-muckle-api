@@ -2,7 +2,7 @@ package com.future.micklemuckle.modules.ledger.dto;
 
 import com.future.micklemuckle.modules.categories.entity.Category;
 import com.future.micklemuckle.modules.ledger.entity.LedgerEntry;
-import com.future.micklemuckle.modules.payment.entity.PaymentMethod;
+import com.future.micklemuckle.modules.paymentMethod.entity.PaymentMethod;
 
 import java.time.LocalDate;
 
