@@ -1,9 +1,6 @@
 package com.future.micklemuckle.rest;
 
-import com.future.micklemuckle.modules.ledger.dto.CreateLedgerEntryRequest;
-import com.future.micklemuckle.modules.ledger.dto.LedgerEntryDetailResponse;
-import com.future.micklemuckle.modules.ledger.dto.LedgerEntrySummaryResponse;
-import com.future.micklemuckle.modules.ledger.dto.UpdateLedgerEntryRequest;
+import com.future.micklemuckle.modules.ledger.dto.*;
 import com.future.micklemuckle.modules.ledger.service.LedgerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Slice;
@@ -47,5 +44,10 @@ public class LedgerController {
     @GetMapping("/List/{pageNum}")
     public Slice<LedgerEntryDetailResponse> getLedgerEntriesByPagination(@PathVariable int pageNum){
         return ledgerService.getLedgerEntriesByPagination(pageNum);
+    }
+
+    @GetMapping("/month/sum/{targetYm}")
+    public List<LedgerEntryDailySumResponse> getLedgerEntriesDailySum(@PathVariable String targetYm){
+        return ledgerService.getLedgerEntriesDailySum(targetYm);
     }
 }

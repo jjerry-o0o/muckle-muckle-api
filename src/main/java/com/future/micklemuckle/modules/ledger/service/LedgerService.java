@@ -3,10 +3,7 @@ package com.future.micklemuckle.modules.ledger.service;
 import com.future.micklemuckle.common.exception.NotFoundException;
 import com.future.micklemuckle.modules.categories.entity.Category;
 import com.future.micklemuckle.modules.categories.repository.CategoriesRepository;
-import com.future.micklemuckle.modules.ledger.dto.CreateLedgerEntryRequest;
-import com.future.micklemuckle.modules.ledger.dto.LedgerEntryDetailResponse;
-import com.future.micklemuckle.modules.ledger.dto.LedgerEntrySummaryResponse;
-import com.future.micklemuckle.modules.ledger.dto.UpdateLedgerEntryRequest;
+import com.future.micklemuckle.modules.ledger.dto.*;
 import com.future.micklemuckle.modules.ledger.entity.LedgerEntry;
 import com.future.micklemuckle.modules.ledger.repository.LedgerRepository;
 import com.future.micklemuckle.modules.paymentMethod.entity.PaymentMethod;
@@ -114,4 +111,21 @@ public class LedgerService {
                 return ledgerRepository.findWithSlice(pageable)
                         .map(LedgerEntryDetailResponse::fromEntity);
     }
+
+    public List<LedgerEntryDailySumResponse> getLedgerEntriesDailySum(String targetYm) {
+        YearMonth ym = YearMonth.parse(targetYm);
+
+        LocalDate startDate = ym.atDay(1);
+        LocalDate endDate = ym.atEndOfMonth();
+
+        return ledgerRepository.findAmountSumByDateAndType(startDate, endDate)
+                .stream()
+                .map(result -> new LedgerEntryDailySumResponse(
+                        result.getEntryDate(),
+                        result.getEntryType(),
+                        result.getAmount()
+                ))
+                .toList();
+    }
+
 }
