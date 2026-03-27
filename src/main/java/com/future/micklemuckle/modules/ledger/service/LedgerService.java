@@ -1,5 +1,6 @@
 package com.future.micklemuckle.modules.ledger.service;
 
+import com.future.micklemuckle.common.exception.ErrorCode;
 import com.future.micklemuckle.common.exception.NotFoundException;
 import com.future.micklemuckle.modules.categories.entity.Category;
 import com.future.micklemuckle.modules.categories.repository.CategoriesRepository;
@@ -36,7 +37,7 @@ public class LedgerService {
 
     public LedgerEntryDetailResponse getLedgerEntryByEntryId(Long id) {
         LedgerEntry ledgerEntry = ledgerRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("LedgerEntry not found"));
+                .orElseThrow(() -> new NotFoundException(ErrorCode.LEDGER_NOT_FOUND));
         return LedgerEntryDetailResponse.fromEntity(ledgerEntry);
     }
 
@@ -63,7 +64,7 @@ public class LedgerService {
     public Long updateLedgerEntry(Long id, UpdateLedgerEntryRequest req) {
 
         LedgerEntry entry = ledgerRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("LedgerEntry not found"));
+                .orElseThrow(() -> new NotFoundException(ErrorCode.LEDGER_NOT_FOUND));
         Category category = getCategory(req.getCategoryId());
         PaymentMethod payment = getPaymentMethod(req.getPaymentId());
 
@@ -80,7 +81,7 @@ public class LedgerService {
         Category category = null;
         if (id != null) {
             category = categoriesRepository.findById(id)
-                    .orElseThrow(() -> new NotFoundException("category not found"));
+                    .orElseThrow(() -> new NotFoundException(ErrorCode.CATEGORY_NOT_FOUND));
         }
         return category;
     }
@@ -89,7 +90,7 @@ public class LedgerService {
         PaymentMethod payment = null;
         if (id != null) {
             payment = paymentMethodRepository.findById(id)
-                    .orElseThrow(() -> new NotFoundException("payment method not found"));
+                    .orElseThrow(() -> new NotFoundException(ErrorCode.PAYMENT_NOT_FOUND));
         }
         return payment;
     }

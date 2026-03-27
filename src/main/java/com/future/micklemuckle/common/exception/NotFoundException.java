@@ -6,9 +6,9 @@ package com.future.micklemuckle.common.exception;
  * @author : future
  * @date : 2026-03-06
  */
-public class NotFoundException extends RuntimeException {
+public class NotFoundException extends BusinessException {
 
-    public NotFoundException(String message) {
-        super(message);
+    public NotFoundException(ErrorCode errorCode) {
+        super(errorCode);
     }
 }

@@ -3,6 +3,7 @@ package com.future.micklemuckle.rest;
 import com.future.micklemuckle.modules.paymentMethod.dto.PaymentMethodResponse;
 import com.future.micklemuckle.modules.paymentMethod.service.PaymentMethodService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,8 @@ public class PaymentMethodController {
     private final PaymentMethodService paymentMethodService;
 
     @GetMapping
-    public List<PaymentMethodResponse> getAll() {
-        return paymentMethodService.findAll();
+    public ResponseEntity<List<PaymentMethodResponse>> getAll() {
+        List<PaymentMethodResponse> response = paymentMethodService.findAll();
+        return ResponseEntity.ok().body(response);
     }
 }

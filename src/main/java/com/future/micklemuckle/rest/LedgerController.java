@@ -4,6 +4,7 @@ import com.future.micklemuckle.modules.ledger.dto.*;
 import com.future.micklemuckle.modules.ledger.service.LedgerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Slice;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,32 +23,38 @@ public class LedgerController {
     private final LedgerService ledgerService;
 
     @GetMapping("/{id}")
-    public LedgerEntryDetailResponse getLedgerEntry(@PathVariable Long id){
-        return ledgerService.getLedgerEntryByEntryId(id);
+    public ResponseEntity<LedgerEntryDetailResponse> getLedgerEntry(@PathVariable Long id){
+        LedgerEntryDetailResponse response = ledgerService.getLedgerEntryByEntryId(id);
+        return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/")
-    public Long saveLedgerEntry(@RequestBody CreateLedgerEntryRequest reqDto){
-        return ledgerService.saveLedgerEntry(reqDto);
+    @PostMapping("")
+    public ResponseEntity<Long> saveLedgerEntry(@RequestBody CreateLedgerEntryRequest reqDto){
+        Long response = ledgerService.saveLedgerEntry(reqDto);
+        return ResponseEntity.ok(response);
     }
 
     @PatchMapping("/{id}")
-    public Long updateLedgerEntry(@PathVariable Long id, @RequestBody UpdateLedgerEntryRequest reqDto){
-        return ledgerService.updateLedgerEntry(id, reqDto);
+    public ResponseEntity<Long> updateLedgerEntry(@PathVariable Long id, @RequestBody UpdateLedgerEntryRequest reqDto){
+        Long response = ledgerService.updateLedgerEntry(id, reqDto);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/month/{targetYm}")
-    public List<LedgerEntrySummaryResponse> getLedgerEntriesByMonth(@PathVariable String targetYm){
-        return ledgerService.getLedgerEntriesByMonth(targetYm);
+    public ResponseEntity<List<LedgerEntrySummaryResponse>> getLedgerEntriesByMonth(@PathVariable String targetYm){
+        List<LedgerEntrySummaryResponse> response =  ledgerService.getLedgerEntriesByMonth(targetYm);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/List/{pageNum}")
-    public Slice<LedgerEntryDetailResponse> getLedgerEntriesByPagination(@PathVariable int pageNum){
-        return ledgerService.getLedgerEntriesByPagination(pageNum);
+    public ResponseEntity<Slice<LedgerEntryDetailResponse>> getLedgerEntriesByPagination(@PathVariable int pageNum){
+        Slice<LedgerEntryDetailResponse> response = ledgerService.getLedgerEntriesByPagination(pageNum);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/month/sum/{targetYm}")
-    public List<LedgerEntryDailySumResponse> getLedgerEntriesDailySum(@PathVariable String targetYm){
-        return ledgerService.getLedgerEntriesDailySum(targetYm);
+    public ResponseEntity<List<LedgerEntryDailySumResponse>> getLedgerEntriesDailySum(@PathVariable String targetYm){
+        List<LedgerEntryDailySumResponse> response =  ledgerService.getLedgerEntriesDailySum(targetYm);
+        return ResponseEntity.ok(response);
     }
 }

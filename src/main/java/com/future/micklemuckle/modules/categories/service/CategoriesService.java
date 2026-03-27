@@ -1,5 +1,6 @@
 package com.future.micklemuckle.modules.categories.service;
 
+import com.future.micklemuckle.common.exception.ErrorCode;
 import com.future.micklemuckle.common.exception.NotFoundException;
 import com.future.micklemuckle.modules.categories.dto.CategoriesResponse;
 import com.future.micklemuckle.modules.categories.entity.Category;
@@ -23,7 +24,7 @@ public class CategoriesService {
 
     public CategoriesResponse findById(Long id) {
         Category category = categoriesRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("category not found"));
+                .orElseThrow(() -> new NotFoundException(ErrorCode.CATEGORY_NOT_FOUND));
 
         return CategoriesResponse.fromEntity(category);
     }
