@@ -129,4 +129,11 @@ public class LedgerService {
                 .toList();
     }
 
+    @Transactional
+    public void deleteLedgerEntry(Long id) {
+        LedgerEntry entry = ledgerRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(ErrorCode.LEDGER_NOT_FOUND));
+
+        ledgerRepository.delete(entry);
+    }
 }

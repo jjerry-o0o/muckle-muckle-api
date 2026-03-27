@@ -57,4 +57,10 @@ public class LedgerController {
         List<LedgerEntryDailySumResponse> response =  ledgerService.getLedgerEntriesDailySum(targetYm);
         return ResponseEntity.ok(response);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteLedgerEntry(@PathVariable Long id) {
+        ledgerService.deleteLedgerEntry(id);
+        return ResponseEntity.noContent().build();
+    }
 }
