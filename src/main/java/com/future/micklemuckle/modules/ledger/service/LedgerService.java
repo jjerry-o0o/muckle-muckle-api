@@ -136,4 +136,12 @@ public class LedgerService {
 
         ledgerRepository.delete(entry);
     }
+
+    public List<LedgerEntryDetailResponse> getLedgerEntriesByDate(String targetDate) {
+        LocalDate date = LocalDate.parse(targetDate);
+        return ledgerRepository.findByEntryDate(date)
+                .stream()
+                .map(LedgerEntryDetailResponse::fromEntity)
+                .toList();
+    }
 }

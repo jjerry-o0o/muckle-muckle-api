@@ -28,18 +28,6 @@ public class LedgerController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("")
-    public ResponseEntity<Long> saveLedgerEntry(@RequestBody CreateLedgerEntryRequest reqDto){
-        Long response = ledgerService.saveLedgerEntry(reqDto);
-        return ResponseEntity.ok(response);
-    }
-
-    @PatchMapping("/{id}")
-    public ResponseEntity<Long> updateLedgerEntry(@PathVariable Long id, @RequestBody UpdateLedgerEntryRequest reqDto){
-        Long response = ledgerService.updateLedgerEntry(id, reqDto);
-        return ResponseEntity.ok(response);
-    }
-
     @GetMapping("/month/{targetYm}")
     public ResponseEntity<List<LedgerEntrySummaryResponse>> getLedgerEntriesByMonth(@PathVariable String targetYm){
         List<LedgerEntrySummaryResponse> response =  ledgerService.getLedgerEntriesByMonth(targetYm);
@@ -58,9 +46,28 @@ public class LedgerController {
         return ResponseEntity.ok(response);
     }
 
+    @PostMapping("")
+    public ResponseEntity<Long> saveLedgerEntry(@RequestBody CreateLedgerEntryRequest reqDto){
+        Long response = ledgerService.saveLedgerEntry(reqDto);
+        return ResponseEntity.ok(response);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Long> updateLedgerEntry(@PathVariable Long id, @RequestBody UpdateLedgerEntryRequest reqDto){
+        Long response = ledgerService.updateLedgerEntry(id, reqDto);
+        return ResponseEntity.ok(response);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteLedgerEntry(@PathVariable Long id) {
         ledgerService.deleteLedgerEntry(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/date/{targetDate}")
+    public ResponseEntity<List<LedgerEntryDetailResponse>> getLedgerEntriesByDate(@PathVariable String targetDate){
+        List<LedgerEntryDetailResponse> responses = ledgerService.getLedgerEntriesByDate(targetDate);
+        return ResponseEntity.ok(responses);
+    }
+
 }

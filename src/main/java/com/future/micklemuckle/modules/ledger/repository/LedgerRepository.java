@@ -32,4 +32,5 @@ public interface LedgerRepository extends JpaRepository<LedgerEntry, Long> {
             " ORDER BY l.entryDate ASC, l.entryType DESC")
     List<LedgerSumProjection> findAmountSumByDateAndType(LocalDate start, LocalDate end);
 
+    List<LedgerEntry> findByEntryDate(LocalDate targetDate);
 }
