@@ -108,7 +108,7 @@ public class LedgerService {
     }
 
     public Slice<LedgerEntryDetailResponse> getLedgerEntriesByPagination(int pageNum) {
-        Pageable pageable = PageRequest.of(pageNum, 20, Sort.by("entryDate").descending());
+        Pageable pageable = PageRequest.of(pageNum, 20, Sort.by(Sort.Order.desc("entryDate"), Sort.Order.desc("entryType"), Sort.Order.desc("title")));
                 return ledgerRepository.findWithSlice(pageable)
                         .map(LedgerEntryDetailResponse::fromEntity);
     }
