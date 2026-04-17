@@ -9,6 +9,19 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+DROP TABLE IF EXISTS `ledger_category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ledger_category` (
+  `category_id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `color` varchar(9) DEFAULT NULL,
+  `sort_order` int NOT NULL DEFAULT '0',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `ledger_category` WRITE;
 /*!40000 ALTER TABLE `ledger_category` DISABLE KEYS */;
@@ -21,6 +34,20 @@ INSERT INTO `ledger_category` (`category_id`, `name`, `color`, `sort_order`, `cr
 INSERT INTO `ledger_category` (`category_id`, `name`, `color`, `sort_order`, `created_at`, `updated_at`) VALUES (7,'부수입','#FFC75F',7,'2026-04-03 01:57:14','2026-04-03 01:57:14');
 /*!40000 ALTER TABLE `ledger_category` ENABLE KEYS */;
 UNLOCK TABLES;
+DROP TABLE IF EXISTS `payment_method`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `payment_method` (
+  `payment_method_id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `color` varchar(9) DEFAULT NULL,
+  `method_type` varchar(1) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`payment_method_id`),
+  CONSTRAINT `ck_method_type` CHECK ((`method_type` in (_utf8mb4'C',_utf8mb4'A',_utf8mb4'D',_utf8mb4'R',_utf8mb4'E')))
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `payment_method` WRITE;
 /*!40000 ALTER TABLE `payment_method` DISABLE KEYS */;
@@ -31,6 +58,28 @@ INSERT INTO `payment_method` (`payment_method_id`, `name`, `color`, `method_type
 INSERT INTO `payment_method` (`payment_method_id`, `name`, `color`, `method_type`, `created_at`, `updated_at`) VALUES (5,'기프티콘','#FF8A00','E','2026-04-03 01:57:14','2026-04-03 01:57:14');
 /*!40000 ALTER TABLE `payment_method` ENABLE KEYS */;
 UNLOCK TABLES;
+DROP TABLE IF EXISTS `ledger_entry`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ledger_entry` (
+  `entry_id` bigint NOT NULL AUTO_INCREMENT,
+  `entry_date` date NOT NULL,
+  `entry_type` varchar(1) NOT NULL,
+  `amount` int NOT NULL,
+  `title` varchar(30) DEFAULT NULL,
+  `memo` varchar(30) DEFAULT NULL,
+  `category_id` bigint NOT NULL,
+  `payment_method_id` bigint NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`entry_id`),
+  KEY `fk_category` (`category_id`),
+  KEY `fk_payment` (`payment_method_id`),
+  CONSTRAINT `fk_category` FOREIGN KEY (`category_id`) REFERENCES `ledger_category` (`category_id`),
+  CONSTRAINT `fk_payment` FOREIGN KEY (`payment_method_id`) REFERENCES `payment_method` (`payment_method_id`),
+  CONSTRAINT `ck_entry_type` CHECK ((`entry_type` in (_utf8mb4'E',_utf8mb4'I')))
+) ENGINE=InnoDB AUTO_INCREMENT=150 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `ledger_entry` WRITE;
 /*!40000 ALTER TABLE `ledger_entry` DISABLE KEYS */;
@@ -145,4 +194,15 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+
+
+codex check
+
+create table asset
+(
+    asset_id bigint auto_increment
+        primary key,
+    user_id bigint notnull,
+)
 
