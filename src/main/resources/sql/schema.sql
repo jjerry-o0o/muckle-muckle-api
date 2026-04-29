@@ -34,3 +34,4 @@ CREATE TABLE IF NOT EXISTS ledger_entry (
     CONSTRAINT fk_payment FOREIGN KEY (payment_method_id) REFERENCES payment_method (payment_method_id),
     CONSTRAINT ck_entry_type CHECK (entry_type IN ('E', 'I'))
 );
+
