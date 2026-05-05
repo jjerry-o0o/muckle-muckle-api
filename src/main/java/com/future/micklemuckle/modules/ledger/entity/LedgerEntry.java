@@ -10,6 +10,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
@@ -33,13 +34,13 @@ public class LedgerEntry extends BaseTimeEntity {
     @NotNull
     private String entryType;
     @NotNull
-    private Integer amount;
+    private BigDecimal amount;
     @NotNull
     private String title;
     private String memo;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "ledger_category_id")
     private Category category;
 
     @ManyToOne
@@ -47,7 +48,7 @@ public class LedgerEntry extends BaseTimeEntity {
     private PaymentMethod payment;
 
     @Builder
-    public LedgerEntry(LocalDate entryDate, String entryType, Integer amount, String title, String memo, Category category, PaymentMethod payment ) {
+    public LedgerEntry(LocalDate entryDate, String entryType, BigDecimal amount, String title, String memo, Category category, PaymentMethod payment ) {
         this.entryDate = entryDate;
         this.entryType = entryType;
         this.amount = amount;
@@ -57,7 +58,7 @@ public class LedgerEntry extends BaseTimeEntity {
         this.payment = payment;
     }
 
-    public void update(LocalDate entryDate, String entryType, Integer amount, String title, Category category, PaymentMethod payment) {
+    public void update(LocalDate entryDate, String entryType, BigDecimal amount, String title, Category category, PaymentMethod payment) {
         this.entryDate = entryDate;
         this.entryType = entryType;
         this.amount = amount;

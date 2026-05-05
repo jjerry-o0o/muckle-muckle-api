@@ -2,6 +2,7 @@ package com.future.micklemuckle.modules.ledger.dto;
 
 import com.future.micklemuckle.modules.ledger.entity.LedgerEntry;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
@@ -14,7 +15,7 @@ public record LedgerEntryDetailResponse(
         Long entryId,
         LocalDate entryDate,
         String entryType,
-        int amount,
+        BigDecimal amount,
         String title,
         String memo,
         Long categoryId,

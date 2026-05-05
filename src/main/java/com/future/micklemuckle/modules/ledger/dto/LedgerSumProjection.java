@@ -1,5 +1,6 @@
 package com.future.micklemuckle.modules.ledger.dto;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
@@ -11,5 +12,5 @@ import java.time.LocalDate;
 public interface LedgerSumProjection {
     LocalDate getEntryDate();
     String getEntryType();
-    int getAmount();
+    BigDecimal getAmount();
 }

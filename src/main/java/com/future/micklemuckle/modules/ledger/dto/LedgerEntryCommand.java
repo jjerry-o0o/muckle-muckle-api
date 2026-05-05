@@ -4,13 +4,14 @@ import com.future.micklemuckle.modules.categories.entity.Category;
 import com.future.micklemuckle.modules.ledger.entity.LedgerEntry;
 import com.future.micklemuckle.modules.paymentMethod.entity.PaymentMethod;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public record LedgerEntryCommand(
         Long entryId,
         LocalDate entryDate,
         String entryType,
-        int amount,
+        BigDecimal amount,
         String title,
         String memo,
         Category category,

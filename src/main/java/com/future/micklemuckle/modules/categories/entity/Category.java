@@ -21,7 +21,7 @@ public class Category extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_id")
+    @Column(name = "ledger_category_id")
     private Long id;
 
     @NotNull

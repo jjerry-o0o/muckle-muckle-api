@@ -3,6 +3,7 @@ package com.future.micklemuckle.modules.ledger.dto;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
@@ -21,7 +22,7 @@ public class CreateLedgerEntryRequest {
     private String entryType;
 
     @NotBlank
-    private int amount;
+    private BigDecimal amount;
 
     @NotBlank
     private String title;

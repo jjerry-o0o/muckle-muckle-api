@@ -1,114 +1,222 @@
-INSERT INTO ledger_category (category_id, name, color, sort_order, created_at, updated_at) VALUES (1,'식비','#FF6B6B',1,'2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO ledger_category (category_id, name, color, sort_order, created_at, updated_at) VALUES (2,'교통','#4D96FF',2,'2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO ledger_category (category_id, name, color, sort_order, created_at, updated_at) VALUES (3,'생활용품','#6BCB77',3,'2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO ledger_category (category_id, name, color, sort_order, created_at, updated_at) VALUES (4,'주거·통신','#845EC2',4,'2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO ledger_category (category_id, name, color, sort_order, created_at, updated_at) VALUES (5,'의료·건강','#FF9671',5,'2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO ledger_category (category_id, name, color, sort_order, created_at, updated_at) VALUES (6,'급여','#008F7A',6,'2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO ledger_category (category_id, name, color, sort_order, created_at, updated_at) VALUES (7,'부수입','#FFC75F',7,'2026-04-03 01:57:14','2026-04-03 01:57:14');
+INSERT INTO users (user_id, user_email, user_password, user_nickname, created_at, updated_at)
+VALUES (1, 'test1@mickle.com', '$2a$10$abcdefghijklmnopqrstuv', '테스터1', '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (2, 'test2@mickle.com', '$2a$10$abcdefghijklmnopqrstuv', '테스터2', '2026-04-03 01:57:14', '2026-04-03 01:57:14');
 
-INSERT INTO payment_method (payment_method_id, name, color, method_type, created_at, updated_at) VALUES (1,'현금','#6C757D','C','2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO payment_method (payment_method_id, name, color, method_type, created_at, updated_at) VALUES (2,'신한 체크카드','#2D6A4F','D','2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO payment_method (payment_method_id, name, color, method_type, created_at, updated_at) VALUES (3,'현대카드','#1D3557','R','2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO payment_method (payment_method_id, name, color, method_type, created_at, updated_at) VALUES (4,'카카오뱅크 계좌이체','#F4B400','A','2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO payment_method (payment_method_id, name, color, method_type, created_at, updated_at) VALUES (5,'기프티콘','#FF8A00','E','2026-04-03 01:57:14','2026-04-03 01:57:14');
+INSERT INTO ledger_category (user_id, name, color, sort_order, created_at, updated_at)
+VALUES (1, '식비','#FF6B6B',1,'2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (1, '교통','#4D96FF',2,'2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (1, '생활용품','#6BCB77',3,'2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (1, '주거·통신','#845EC2',4,'2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (1, '의료·건강','#FF9671',5,'2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (1, '급여','#008F7A',6,'2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (1, '부수입','#FFC75F',7,'2026-04-03 01:57:14','2026-04-03 01:57:14');
 
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (1,'2026-03-01','I',2450000,'3월 급여','월급 입금',6,4,'2026-04-03 01:57:14','2026-04-16 02:04:12');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (2,'2026-03-02','E',9800,'점심 김치찌개','회사 근처 식당',1,2,'2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (3,'2026-03-03','E',1450,'편의점 생수',NULL,3,1,'2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (4,'2026-03-04','E',62000,'장보기','이마트 주간 장보기',1,3,'2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (5,'2026-03-05','E',1250,'버스비',NULL,2,1,'2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (6,'2026-03-06','E',55000,'휴대폰 요금','3월 통신비',4,4,'2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (7,'2026-03-07','E',18700,'약국','감기약 구매',5,3,'2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (8,'2026-03-08','I',50000,'중고거래 판매',NULL,7,1,'2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (9,'2026-03-10','I',120000,'프리랜서 원고료','외주 작업 정산',7,4,'2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (10,'2026-03-12','I',20000,'생일 기프티콘 받음','친구에게 받은 커피 쿠폰',7,5,'2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (11,'2026-03-13','E',5900,'아이스 아메리카노',NULL,1,5,'2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (12,'2026-03-14','E',15000,'스타벅스 케이크','생일에 받은 기프티콘 사용',1,5,'2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (13,'2026-03-18','I',10000,'이벤트 기프티콘',NULL,7,5,'2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (14,'2026-03-20','E',32000,'세제랑 휴지','생활용품 보충',3,2,'2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (15,'2026-03-22','E',13500,'택시비','야근 후 귀가',2,3,'2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (16,'2026-03-25','E',850000,'월세','원룸 월세',4,4,'2026-04-03 01:57:14','2026-04-03 01:57:14');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (17,'2026-03-02','E',7800,'아침 샌드위치',NULL,1,2,'2026-04-03 02:02:43','2026-04-03 02:02:43');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (18,'2026-03-03','E',4200,'지하철 교통카드 충전','출퇴근용 충전',2,1,'2026-04-03 02:02:43','2026-04-03 02:02:43');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (19,'2026-03-04','E',8900,'편의점 삼각김밥',NULL,1,2,'2026-04-03 02:02:43','2026-04-03 02:02:43');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (20,'2026-03-06','E',24000,'세탁세제 리필',NULL,3,3,'2026-04-03 02:02:43','2026-04-03 02:02:43');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (21,'2026-03-08','E',4300,'공항버스 환승비',NULL,2,1,'2026-04-03 02:02:43','2026-04-03 02:02:43');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (22,'2026-03-09','E',12000,'닭가슴살 샐러드','점심식사',1,2,'2026-04-03 02:02:43','2026-04-03 02:02:43');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (23,'2026-03-11','E',6700,'파스 구매',NULL,5,1,'2026-04-03 02:02:43','2026-04-03 02:02:43');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (24,'2026-03-12','E',15800,'비빔국수 저녁',NULL,1,3,'2026-04-03 02:02:43','2026-04-03 02:02:43');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (25,'2026-03-13','E',30000,'주방 수납용품','다이소와 마트 구매',3,2,'2026-04-03 02:02:43','2026-04-03 02:02:43');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (26,'2026-03-15','E',18000,'심야 택시 귀가',NULL,2,3,'2026-04-03 02:02:43','2026-04-03 02:02:43');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (27,'2026-03-16','E',9900,'김밥천국 저녁',NULL,1,1,'2026-04-03 02:02:43','2026-04-03 02:02:43');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (28,'2026-03-17','E',41000,'집 인터넷 자동이체','3월 인터넷 비용',4,4,'2026-04-03 02:02:43','2026-04-03 02:02:43');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (29,'2026-03-19','E',5200,'우산 구매',NULL,3,2,'2026-04-03 02:02:43','2026-04-03 02:02:43');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (30,'2026-03-21','E',13400,'순대국 점심','주말 외식',1,3,'2026-04-03 02:02:43','2026-04-03 02:02:43');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (31,'2026-03-23','E',9500,'내과 진료','감기 재진',5,4,'2026-04-03 02:02:43','2026-04-03 02:02:43');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (32,'2026-03-24','E',2700,'마을버스 환승',NULL,2,1,'2026-04-03 02:02:43','2026-04-03 02:02:43');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (33,'2026-03-26','E',22000,'휴지와 물티슈',NULL,3,2,'2026-04-03 02:02:43','2026-04-03 02:02:43');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (34,'2026-03-27','E',11500,'제육덮밥 점심',NULL,1,2,'2026-04-03 02:02:43','2026-04-03 02:02:43');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (35,'2026-03-28','E',4800,'지하철 2회 이용',NULL,2,1,'2026-04-03 02:02:43','2026-04-03 02:02:43');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (36,'2026-03-29','E',7700,'KF94 마스크','드럭스토어 구매',5,3,'2026-04-03 02:02:43','2026-04-03 02:02:43');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (37,'2026-03-02','E',4500,'오후 커피',NULL,1,2,'2026-04-03 02:04:25','2026-04-03 02:04:25');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (38,'2026-03-03','E',6800,'편의점 도시락','야근 전 저녁',1,1,'2026-04-03 02:04:25','2026-04-03 02:04:25');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (39,'2026-03-04','E',3900,'캔커피',NULL,1,2,'2026-04-03 02:04:25','2026-04-03 02:04:25');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (40,'2026-03-06','E',8300,'약국 비타민',NULL,5,3,'2026-04-03 02:04:25','2026-04-03 02:04:25');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (41,'2026-03-09','E',27000,'주말 반찬 장보기',NULL,1,3,'2026-04-03 02:04:25','2026-04-03 02:04:25');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (42,'2026-03-13','E',5600,'버스 환승',NULL,2,1,'2026-04-03 02:04:25','2026-04-03 02:04:25');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (43,'2026-03-17','E',12000,'편의점 생필품','칫솔과 치약 구매',3,2,'2026-04-03 02:04:25','2026-04-03 02:04:25');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (44,'2026-03-21','E',9800,'분식 저녁',NULL,1,1,'2026-04-03 02:04:25','2026-04-03 02:04:25');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (45,'2026-03-23','E',21000,'약국 영양제','소화제와 비타민',5,4,'2026-04-03 02:04:25','2026-04-03 02:04:25');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (46,'2026-03-27','E',16000,'퇴근길 택시',NULL,2,3,'2026-04-03 02:04:25','2026-04-03 02:04:25');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (47,'2026-03-28','E',8500,'베이글 아침식사',NULL,1,2,'2026-04-03 07:23:14','2026-04-03 07:23:14');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (48,'2026-03-28','E',6300,'편의점 우유와 시리얼','아침 대용',3,1,'2026-04-03 07:23:14','2026-04-03 07:23:14');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (49,'2026-03-28','E',14000,'점심 제육볶음','주말 외식',1,3,'2026-04-03 07:23:14','2026-04-03 07:23:14');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (50,'2026-03-28','I',35000,'중고책 판매','당근 거래 정산',7,4,'2026-04-03 07:23:14','2026-04-03 07:23:14');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (51,'2026-03-28','I',5000,'친구 정산금',NULL,7,1,'2026-04-03 07:23:14','2026-04-03 07:23:14');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (101,'2026-01-01','I',2450000,'1월 급여','월급 입금',6,4,'2026-04-16 02:00:21','2026-04-16 02:04:12');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (102,'2026-01-02','E',9200,'점심 순두부찌개','회사 근처 식당',1,2,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (103,'2026-01-03','E',4200,'지하철 교통카드 충전','출퇴근용 충전',2,1,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (104,'2026-01-04','E',58000,'장보기','이마트 주간 장보기',1,3,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (105,'2026-01-06','E',55000,'휴대폰 요금','1월 통신비',4,4,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (106,'2026-01-08','E',7900,'아침 샌드위치',NULL,1,2,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (107,'2026-01-10','E',23000,'세탁세제 리필',NULL,3,3,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (108,'2026-01-12','E',13500,'택시비','야근 후 귀가',2,3,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (109,'2026-01-14','E',11800,'제육덮밥 점심',NULL,1,2,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (110,'2026-01-17','E',41000,'집 인터넷 자동이체','1월 인터넷 비용',4,4,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (111,'2026-01-19','I',80000,'프리랜서 원고료','외주 작업 정산',7,4,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (112,'2026-01-21','E',31000,'주방 수납용품','다이소와 마트 구매',3,2,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (113,'2026-01-23','E',18700,'약국','감기약 구매',5,3,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (114,'2026-01-25','E',850000,'월세','원룸 월세',4,4,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (115,'2026-01-27','E',5900,'아이스 아메리카노',NULL,1,5,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (116,'2026-01-29','E',4800,'지하철 2회 이용',NULL,2,1,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (117,'2026-01-31','I',30000,'중고거래 판매','당근 거래 정산',7,1,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (118,'2026-02-01','I',2450000,'2월 급여','월급 입금',6,4,'2026-04-16 02:00:21','2026-04-16 02:04:12');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (119,'2026-02-02','E',9800,'점심 김치찌개','회사 근처 식당',1,2,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (120,'2026-02-03','E',1250,'버스비',NULL,2,1,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (121,'2026-02-04','E',61000,'장보기','이마트 주간 장보기',1,3,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (122,'2026-02-06','E',55000,'휴대폰 요금','2월 통신비',4,4,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (123,'2026-02-08','I',50000,'중고거래 판매',NULL,7,1,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (124,'2026-02-09','E',12000,'닭가슴살 샐러드','점심식사',1,2,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (125,'2026-02-11','E',6700,'파스 구매',NULL,5,1,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (126,'2026-02-13','E',30000,'생활용품 보충','세제랑 휴지',3,2,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (127,'2026-02-14','E',15000,'스타벅스 케이크','기프티콘 사용',1,5,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (128,'2026-02-17','E',41000,'집 인터넷 자동이체','2월 인터넷 비용',4,4,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (129,'2026-02-19','E',5200,'우산 구매',NULL,3,2,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (130,'2026-02-21','E',13400,'순대국 점심','주말 외식',1,3,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (131,'2026-02-23','E',21000,'약국 영양제','소화제와 비타민',5,4,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (132,'2026-02-25','E',850000,'월세','원룸 월세',4,4,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (133,'2026-02-27','E',16000,'퇴근길 택시',NULL,2,3,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (134,'2026-02-28','I',35000,'중고책 판매','당근 거래 정산',7,4,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (135,'2026-04-01','I',2450000,'4월 급여','월급 입금',6,4,'2026-04-16 02:00:21','2026-04-16 02:04:12');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (136,'2026-04-02','E',9800,'점심 김치찌개','회사 근처 식당',1,2,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (137,'2026-04-03','E',4200,'지하철 교통카드 충전','출퇴근용 충전',2,1,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (138,'2026-04-04','E',65000,'장보기','이마트 주간 장보기',1,3,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (139,'2026-04-06','E',55000,'휴대폰 요금','4월 통신비',4,4,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (140,'2026-04-07','E',7800,'아침 샌드위치',NULL,1,2,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (141,'2026-04-08','E',24000,'세탁세제 리필',NULL,3,3,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (142,'2026-04-09','I',120000,'프리랜서 원고료','외주 작업 정산',7,4,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (143,'2026-04-10','E',15800,'비빔국수 저녁',NULL,1,3,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (144,'2026-04-11','E',4300,'공항버스 환승비',NULL,2,1,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (145,'2026-04-12','E',27000,'주말 반찬 장보기',NULL,1,3,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (146,'2026-04-13','E',5900,'아이스 아메리카노',NULL,1,5,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (147,'2026-04-14','E',12000,'편의점 생필품','칫솔과 치약 구매',3,2,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (148,'2026-04-15','E',18000,'심야 택시 귀가',NULL,2,3,'2026-04-16 02:00:21','2026-04-16 02:00:21');
-INSERT INTO ledger_entry (entry_id, entry_date, entry_type, amount, title, memo, category_id, payment_method_id, created_at, updated_at) VALUES (149,'2026-04-16','E',9500,'내과 진료','감기 진료',5,4,'2026-04-16 02:00:21','2026-04-16 02:00:21');
+INSERT INTO payment_method (user_id, name, color, method_type, created_at, updated_at)
+VALUES (1, '현금','#6C757D','C','2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (1, '기업은행 계좌이체','#2D6A4F','A','2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (1, '하나은행 계좌이체','#4D96FF','A','2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (1, '신한은행 계좌이체','#F4B400','A','2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (1, '신한체크카드','#008F7A','D','2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (1, '현대카드','#1D3557','R','2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (1, '기프티콘','#FF8A00','E','2026-04-03 01:57:14','2026-04-03 01:57:14');
+
+INSERT INTO ledger_entry (user_id, entry_date, entry_type, amount, title, memo, ledger_category_id, payment_method_id, created_at, updated_at)
+VALUES (1, '2026-03-01', 'I', 2450000, '3월 급여', '월급 입금', 6, 4, '2026-04-03 01:57:14', '2026-04-16 02:04:12')
+     , (1, '2026-03-02', 'E', 9800, '점심 김치찌개', '회사 근처 식당', 1, 2, '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (1, '2026-03-03', 'E', 1450, '편의점 생수', NULL, 3, 1, '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (1, '2026-03-04', 'E', 62000, '장보기', '이마트 주간 장보기', 1, 3, '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (1, '2026-03-05', 'E', 1250, '버스비', NULL, 2, 1, '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (1, '2026-03-06', 'E', 55000, '휴대폰 요금', '3월 통신비', 4, 4, '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (1, '2026-03-07', 'E', 18700, '약국', '감기약 구매', 5, 3, '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (1, '2026-03-08', 'I', 50000, '중고거래 판매', NULL, 7, 1, '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (1, '2026-03-10', 'I', 120000, '프리랜서 원고료', '외주 작업 정산', 7, 6, '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (1, '2026-03-12', 'I', 20000, '생일 기프티콘 받음', '친구에게 받은 커피 쿠폰', 7, 5, '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (1, '2026-03-13', 'E', 5900, '아이스 아메리카노', NULL, 1, 5, '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (1, '2026-03-14', 'E', 15000, '스타벅스 케이크', '생일에 받은 기프티콘 사용', 1, 5, '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (1, '2026-03-18', 'I', 10000, '이벤트 기프티콘', NULL, 7, 5, '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (1, '2026-03-20', 'E', 32000, '세제랑 휴지', '생활용품 보충', 3, 7, '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (1, '2026-03-22', 'E', 13500, '택시비', '야근 후 귀가', 2, 3, '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (1, '2026-03-25', 'E', 850000, '월세', '원룸 월세', 4, 4, '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (1, '2026-03-02', 'E', 7800, '아침 샌드위치', NULL, 1, 2, '2026-04-03 02:02:43', '2026-04-03 02:02:43')
+     , (1, '2026-03-03', 'E', 4200, '지하철 교통카드 충전', '출퇴근용 충전', 2, 6, '2026-04-03 02:02:43', '2026-04-03 02:02:43')
+     , (1, '2026-03-04', 'E', 8900, '편의점 삼각김밥', NULL, 1, 2, '2026-04-03 02:02:43', '2026-04-03 02:02:43')
+     , (1, '2026-03-06', 'E', 24000, '세탁세제 리필', NULL, 3, 3, '2026-04-03 02:02:43', '2026-04-03 02:02:43')
+     , (1, '2026-03-08', 'E', 4300, '공항버스 환승비', NULL, 2, 1, '2026-04-03 02:02:43', '2026-04-03 02:02:43')
+     , (1, '2026-03-09', 'E', 12000, '닭가슴살 샐러드', '점심식사', 1, 5, '2026-04-03 02:02:43', '2026-04-03 02:02:43')
+     , (1, '2026-03-11', 'E', 6700, '파스 구매', NULL, 5, 1, '2026-04-03 02:02:43', '2026-04-03 02:02:43')
+     , (1, '2026-03-12', 'E', 15800, '비빔국수 저녁', NULL, 1, 3, '2026-04-03 02:02:43', '2026-04-03 02:02:43')
+     , (1, '2026-03-13', 'E', 30000, '주방 수납용품', '다이소와 마트 구매', 3, 2, '2026-04-03 02:02:43', '2026-04-03 02:02:43')
+     , (1, '2026-03-15', 'E', 18000, '심야 택시 귀가', NULL, 2, 3, '2026-04-03 02:02:43', '2026-04-03 02:02:43')
+     , (1, '2026-03-16', 'E', 9900, '김밥천국 저녁', NULL, 1, 6, '2026-04-03 02:02:43', '2026-04-03 02:02:43')
+     , (1, '2026-03-17', 'E', 41000, '집 인터넷 자동이체', '3월 인터넷 비용', 4, 7, '2026-04-03 02:02:43', '2026-04-03 02:02:43')
+     , (1, '2026-03-19', 'E', 5200, '우산 구매', NULL, 3, 2, '2026-04-03 02:02:43', '2026-04-03 02:02:43')
+     , (1, '2026-03-21', 'E', 13400, '순대국 점심', '주말 외식', 1, 3, '2026-04-03 02:02:43', '2026-04-03 02:02:43')
+     , (1, '2026-03-23', 'E', 9500, '내과 진료', '감기 재진', 5, 4, '2026-04-03 02:02:43', '2026-04-03 02:02:43')
+     , (1, '2026-03-24', 'E', 2700, '마을버스 환승', NULL, 2, 1, '2026-04-03 02:02:43', '2026-04-03 02:02:43')
+     , (1, '2026-03-26', 'E', 22000, '휴지와 물티슈', NULL, 3, 5, '2026-04-03 02:02:43', '2026-04-03 02:02:43')
+     , (1, '2026-03-27', 'E', 11500, '제육덮밥 점심', NULL, 1, 2, '2026-04-03 02:02:43', '2026-04-03 02:02:43')
+     , (1, '2026-03-28', 'E', 4800, '지하철 2회 이용', NULL, 2, 1, '2026-04-03 02:02:43', '2026-04-03 02:02:43')
+     , (1, '2026-03-29', 'E', 7700, 'KF94 마스크', '드럭스토어 구매', 5, 6, '2026-04-03 02:02:43', '2026-04-03 02:02:43')
+     , (1, '2026-03-02', 'E', 4500, '오후 커피', NULL, 1, 2, '2026-04-03 02:04:25', '2026-04-03 02:04:25')
+     , (1, '2026-03-03', 'E', 6800, '편의점 도시락', '야근 전 저녁', 1, 1, '2026-04-03 02:04:25', '2026-04-03 02:04:25')
+     , (1, '2026-03-04', 'E', 3900, '캔커피', NULL, 1, 2, '2026-04-03 02:04:25', '2026-04-03 02:04:25')
+     , (1, '2026-03-06', 'E', 8300, '약국 비타민', NULL, 5, 3, '2026-04-03 02:04:25', '2026-04-03 02:04:25')
+     , (1, '2026-03-09', 'E', 27000, '주말 반찬 장보기', NULL, 1, 3, '2026-04-03 02:04:25', '2026-04-03 02:04:25')
+     , (1, '2026-03-13', 'E', 5600, '버스 환승', NULL, 2, 7, '2026-04-03 02:04:25', '2026-04-03 02:04:25')
+     , (1, '2026-03-17', 'E', 12000, '편의점 생필품', '칫솔과 치약 구매', 3, 2, '2026-04-03 02:04:25', '2026-04-03 02:04:25')
+     , (1, '2026-03-21', 'E', 9800, '분식 저녁', NULL, 1, 5, '2026-04-03 02:04:25', '2026-04-03 02:04:25')
+     , (1, '2026-03-23', 'E', 21000, '약국 영양제', '소화제와 비타민', 5, 6, '2026-04-03 02:04:25', '2026-04-03 02:04:25')
+     , (1, '2026-03-27', 'E', 16000, '퇴근길 택시', NULL, 2, 3, '2026-04-03 02:04:25', '2026-04-03 02:04:25')
+     , (1, '2026-03-28', 'E', 8500, '베이글 아침식사', NULL, 1, 2, '2026-04-03 07:23:14', '2026-04-03 07:23:14')
+     , (1, '2026-03-28', 'E', 6300, '편의점 우유와 시리얼', '아침 대용', 3, 1, '2026-04-03 07:23:14', '2026-04-03 07:23:14')
+     , (1, '2026-03-28', 'E', 14000, '점심 제육볶음', '주말 외식', 1, 3, '2026-04-03 07:23:14', '2026-04-03 07:23:14')
+     , (1, '2026-03-28', 'I', 35000, '중고책 판매', '당근 거래 정산', 7, 4, '2026-04-03 07:23:14', '2026-04-03 07:23:14')
+     , (1, '2026-03-28', 'I', 5000, '친구 정산금', NULL, 7, 1, '2026-04-03 07:23:14', '2026-04-03 07:23:14')
+     , (1, '2026-01-01', 'I', 2450000, '1월 급여', '월급 입금', 6, 4, '2026-04-16 02:00:21', '2026-04-16 02:04:12')
+     , (1, '2026-01-02', 'E', 9200, '점심 순두부찌개', '회사 근처 식당', 1, 2, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-01-03', 'E', 4200, '지하철 교통카드 충전', '출퇴근용 충전', 2, 6, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-01-04', 'E', 58000, '장보기', '이마트 주간 장보기', 1, 5, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-01-06', 'E', 55000, '휴대폰 요금', '1월 통신비', 4, 7, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-01-08', 'E', 7900, '아침 샌드위치', NULL, 1, 2, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-01-10', 'E', 23000, '세탁세제 리필', NULL, 3, 3, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-01-12', 'E', 13500, '택시비', '야근 후 귀가', 2, 3, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-01-14', 'E', 11800, '제육덮밥 점심', NULL, 1, 2, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-01-17', 'E', 41000, '집 인터넷 자동이체', '1월 인터넷 비용', 4, 4, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-01-19', 'I', 80000, '프리랜서 원고료', '외주 작업 정산', 7, 4, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-01-21', 'E', 31000, '주방 수납용품', '다이소와 마트 구매', 3, 6, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-01-23', 'E', 18700, '약국', '감기약 구매', 5, 3, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-01-25', 'E', 850000, '월세', '원룸 월세', 4, 4, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-01-27', 'E', 5900, '아이스 아메리카노', NULL, 1, 5, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-01-29', 'E', 4800, '지하철 2회 이용', NULL, 2, 1, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-01-31', 'I', 30000, '중고거래 판매', '당근 거래 정산', 7, 1, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-02-01', 'I', 2450000, '2월 급여', '월급 입금', 6, 4, '2026-04-16 02:00:21', '2026-04-16 02:04:12')
+     , (1, '2026-02-02', 'E', 9800, '점심 김치찌개', '회사 근처 식당', 1, 7, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-02-03', 'E', 1250, '버스비', NULL, 2, 1, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-02-04', 'E', 61000, '장보기', '이마트 주간 장보기', 1, 6, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-02-06', 'E', 55000, '휴대폰 요금', '2월 통신비', 4, 4, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-02-08', 'I', 50000, '중고거래 판매', NULL, 7, 1, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-02-09', 'E', 12000, '닭가슴살 샐러드', '점심식사', 1, 2, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-02-11', 'E', 6700, '파스 구매', NULL, 5, 1, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-02-13', 'E', 30000, '생활용품 보충', '세제랑 휴지', 3, 5, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-02-14', 'E', 15000, '스타벅스 케이크', '기프티콘 사용', 1, 5, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-02-17', 'E', 41000, '집 인터넷 자동이체', '2월 인터넷 비용', 4, 4, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-02-19', 'E', 5200, '우산 구매', NULL, 3, 2, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-02-21', 'E', 13400, '순대국 점심', '주말 외식', 1, 6, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-02-23', 'E', 21000, '약국 영양제', '소화제와 비타민', 5, 4, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-02-25', 'E', 850000, '월세', '원룸 월세', 4, 4, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-02-27', 'E', 16000, '퇴근길 택시', NULL, 2, 7, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-02-28', 'I', 35000, '중고책 판매', '당근 거래 정산', 7, 4, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-04-01', 'I', 2450000, '4월 급여', '월급 입금', 6, 4, '2026-04-16 02:00:21', '2026-04-16 02:04:12')
+     , (1, '2026-04-02', 'E', 9800, '점심 김치찌개', '회사 근처 식당', 1, 2, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-04-03', 'E', 4200, '지하철 교통카드 충전', '출퇴근용 충전', 2, 5, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-04-04', 'E', 65000, '장보기', '이마트 주간 장보기', 1, 3, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-04-06', 'E', 55000, '휴대폰 요금', '4월 통신비', 4, 6, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-04-07', 'E', 7800, '아침 샌드위치', NULL, 1, 2, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-04-08', 'E', 24000, '세탁세제 리필', NULL, 3, 3, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-04-09', 'I', 120000, '프리랜서 원고료', '외주 작업 정산', 7, 4, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-04-10', 'E', 15800, '비빔국수 저녁', NULL, 1, 3, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-04-11', 'E', 4300, '공항버스 환승비', NULL, 2, 1, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-04-12', 'E', 27000, '주말 반찬 장보기', NULL, 1, 3, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-04-13', 'E', 5900, '아이스 아메리카노', NULL, 1, 5, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-04-14', 'E', 12000, '편의점 생필품', '칫솔과 치약 구매', 3, 7, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-04-15', 'E', 18000, '심야 택시 귀가', NULL, 2, 6, '2026-04-16 02:00:21', '2026-04-16 02:00:21')
+     , (1, '2026-04-16', 'E', 9500, '내과 진료', '감기 진료', 5, 4, '2026-04-16 02:00:21', '2026-04-16 02:00:21');
+
+INSERT INTO asset_category (asset_category_id, user_id, name, sort_order, is_active, created_at, updated_at)
+VALUES (1,1,'현금',1,'Y','2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (2,1,'예적금',2,'Y','2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (3,1,'주식',3,'Y','2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (4,1,'부동산',4,'Y','2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (5,1,'외화',5,'Y','2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (6,1,'기타',6,'Y','2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (7,1,'부채',7,'Y','2026-04-03 01:57:14','2026-04-03 01:57:14');
+
+INSERT INTO asset (
+    asset_id,
+    user_id,
+    asset_category_id,
+    name,
+    institution_name,
+    is_debt,
+    memo,
+    sort_order,
+    is_active,
+    created_at,
+    updated_at
+)
+VALUES (1, 1, 1, '기업은행 입출금', '기업은행', 'N', '생활비 계좌', 1, 'Y', '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (2, 1, 1, '하나은행 입출금', '하나은행', 'N', '비상금 계좌', 2, 'Y', '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (3, 1, 1, '신한은행 입출금', '신한은행', 'N', NULL, 3, 'Y', '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (4, 1, 2, '신한 도약계좌', '신한은행', 'N', '만기 2029-04-25', 1, 'Y', '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (5, 1, 2, '국민 스타 적금', '국민은행', 'N', NULL, 2, 'Y', '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (6, 1, 2, '주택청약', '하나은행', 'N', '청약용', 3, 'Y', '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (7, 1, 3, '삼성전자', '한국투자증권', 'N', NULL, 1, 'Y', '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (8, 1, 3, 'S&P500 ETF', '한국투자증권', 'N', '장기투자', 2, 'Y', '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (9, 1, 3, '메타', '한국투자증권', 'N', NULL, 3, 'Y', '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (10, 1, 3, 'ISA 예수금', '한국투자증권', 'N', NULL, 4, 'Y', '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (11, 1, 3, '국내주식 예수금', '한국투자증권', 'N', NULL, 5, 'Y', '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (12, 1, 3, '해외주식 예수금', '한국투자증권', 'N', NULL, 6, 'Y', '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (13, 1, 5, '엔화 보유', NULL, 'N', '여행용', 1, 'Y', '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (14, 1, 5, '달러 보유', NULL, 'N', NULL, 2, 'Y', '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (15, 1, 4, '월세 보증금', NULL, 'N', '전세 전환 예정', 1, 'Y', '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (16, 1, 6, '돼지 저금통', NULL, 'N', '현금 모음', 1, 'Y', '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (17, 1, 7, '신용대출', '카카오뱅크', 'Y', '금리 5.2%', 1, 'Y', '2026-04-03 01:57:14', '2026-04-03 01:57:14')
+     , (18, 1, 7, '학자금 대출', '한국장학재단', 'Y', NULL, 2, 'Y', '2026-04-03 01:57:14', '2026-04-03 01:57:14');
+
+INSERT INTO asset_current_value (asset_id, quantity, unit_price, current_value, currency_code, exchange_rate, created_at, updated_at)
+VALUES (1,NULL,NULL,1200000.00,'KRW',NULL,'2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (2,NULL,NULL,850000.00,'KRW',NULL,'2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (3,NULL,NULL,430000.00,'KRW',NULL,'2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (4,NULL,NULL,18000000.00,'KRW',NULL,'2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (5,NULL,NULL,3200000.00,'KRW',NULL,'2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (6,NULL,NULL,14000000.00,'KRW',NULL,'2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (7,35.000000,82000.00,2870000.00,'KRW',NULL,'2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (8,12.000000,560.00,6720.00,'USD',1380.00,'2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (9,4.000000,510.00,2040.00,'USD',1380.00,'2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (10,NULL,NULL,2500000.00,'KRW',NULL,'2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (11,NULL,NULL,1800000.00,'KRW',NULL,'2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (12,NULL,NULL,1500.00,'USD',1380.00,'2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (13,NULL,NULL,120000.00,'JPY',9.10,'2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (14,NULL,NULL,2300.00,'USD',1380.00,'2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (15,NULL,NULL,30000000.00,'KRW',NULL,'2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (16,NULL,NULL,280000.00,'KRW',NULL,'2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (17,NULL,NULL,12000000.00,'KRW',NULL,'2026-04-03 01:57:14','2026-04-03 01:57:14')
+     , (18,NULL,NULL,8500000.00,'KRW',NULL,'2026-04-03 01:57:14','2026-04-03 01:57:14');
+
+INSERT INTO asset_daily_snapshot (asset_id, snapshot_date, quantity, unit_price, current_value, currency_code, exchange_rate, created_at, updated_at)
+VALUES (1,'2026-04-15',NULL,NULL,1180000.00,'KRW',NULL,'2026-04-15 23:59:59','2026-04-15 23:59:59')
+     , (2,'2026-04-15',NULL,NULL,830000.00,'KRW',NULL,'2026-04-15 23:59:59','2026-04-15 23:59:59')
+     , (3,'2026-04-15',NULL,NULL,410000.00,'KRW',NULL,'2026-04-15 23:59:59','2026-04-15 23:59:59')
+     , (4,'2026-04-15',NULL,NULL,17900000.00,'KRW',NULL,'2026-04-15 23:59:59','2026-04-15 23:59:59')
+     , (5,'2026-04-15',NULL,NULL,3180000.00,'KRW',NULL,'2026-04-15 23:59:59','2026-04-15 23:59:59')
+     , (6,'2026-04-15',NULL,NULL,13950000.00,'KRW',NULL,'2026-04-15 23:59:59','2026-04-15 23:59:59')
+     , (7,'2026-04-15',35.000000,81000.00,2835000.00,'KRW',NULL,'2026-04-15 23:59:59','2026-04-15 23:59:59')
+     , (8,'2026-04-15',12.000000,555.00,6660.00,'USD',1375.00,'2026-04-15 23:59:59','2026-04-15 23:59:59')
+     , (9,'2026-04-15',4.000000,505.00,2020.00,'USD',1375.00,'2026-04-15 23:59:59','2026-04-15 23:59:59')
+     , (10,'2026-04-15',NULL,NULL,2480000.00,'KRW',NULL,'2026-04-15 23:59:59','2026-04-15 23:59:59')
+     , (11,'2026-04-15',NULL,NULL,1760000.00,'KRW',NULL,'2026-04-15 23:59:59','2026-04-15 23:59:59')
+     , (12,'2026-04-15',NULL,NULL,1480.00,'USD',1375.00,'2026-04-15 23:59:59','2026-04-15 23:59:59')
+     , (13,'2026-04-15',NULL,NULL,119000.00,'JPY',9.05,'2026-04-15 23:59:59','2026-04-15 23:59:59')
+     , (14,'2026-04-15',NULL,NULL,2280.00,'USD',1375.00,'2026-04-15 23:59:59','2026-04-15 23:59:59')
+     , (15,'2026-04-15',NULL,NULL,30000000.00,'KRW',NULL,'2026-04-15 23:59:59','2026-04-15 23:59:59')
+     , (16,'2026-04-15',NULL,NULL,270000.00,'KRW',NULL,'2026-04-15 23:59:59','2026-04-15 23:59:59')
+     , (17,'2026-04-15',NULL,NULL,12100000.00,'KRW',NULL,'2026-04-15 23:59:59','2026-04-15 23:59:59')
+     , (18,'2026-04-15',NULL,NULL,8550000.00,'KRW',NULL,'2026-04-15 23:59:59','2026-04-15 23:59:59')
+     , (1,'2026-04-16',NULL,NULL,1200000.00,'KRW',NULL,'2026-04-16 23:59:59','2026-04-16 23:59:59')
+     , (2,'2026-04-16',NULL,NULL,850000.00,'KRW',NULL,'2026-04-16 23:59:59','2026-04-16 23:59:59')
+     , (3,'2026-04-16',NULL,NULL,430000.00,'KRW',NULL,'2026-04-16 23:59:59','2026-04-16 23:59:59')
+     , (4,'2026-04-16',NULL,NULL,18000000.00,'KRW',NULL,'2026-04-16 23:59:59','2026-04-16 23:59:59')
+     , (5,'2026-04-16',NULL,NULL,3200000.00,'KRW',NULL,'2026-04-16 23:59:59','2026-04-16 23:59:59')
+     , (6,'2026-04-16',NULL,NULL,14000000.00,'KRW',NULL,'2026-04-16 23:59:59','2026-04-16 23:59:59')
+     , (7,'2026-04-16',35.000000,82000.00,2870000.00,'KRW',NULL,'2026-04-16 23:59:59','2026-04-16 23:59:59')
+     , (8,'2026-04-16',12.000000,560.00,6720.00,'USD',1380.00,'2026-04-16 23:59:59','2026-04-16 23:59:59')
+     , (9,'2026-04-16',4.000000,510.00,2040.00,'USD',1380.00,'2026-04-16 23:59:59','2026-04-16 23:59:59')
+     , (10,'2026-04-16',NULL,NULL,2500000.00,'KRW',NULL,'2026-04-16 23:59:59','2026-04-16 23:59:59')
+     , (11,'2026-04-16',NULL,NULL,1800000.00,'KRW',NULL,'2026-04-16 23:59:59','2026-04-16 23:59:59')
+     , (12,'2026-04-16',NULL,NULL,1500.00,'USD',1380.00,'2026-04-16 23:59:59','2026-04-16 23:59:59')
+     , (13,'2026-04-16',NULL,NULL,120000.00,'JPY',9.10,'2026-04-16 23:59:59','2026-04-16 23:59:59')
+     , (14,'2026-04-16',NULL,NULL,2300.00,'USD',1380.00,'2026-04-16 23:59:59','2026-04-16 23:59:59')
+     , (15,'2026-04-16',NULL,NULL,30000000.00,'KRW',NULL,'2026-04-16 23:59:59','2026-04-16 23:59:59')
+     , (16,'2026-04-16',NULL,NULL,280000.00,'KRW',NULL,'2026-04-16 23:59:59','2026-04-16 23:59:59')
+     , (17,'2026-04-16',NULL,NULL,12000000.00,'KRW',NULL,'2026-04-16 23:59:59','2026-04-16 23:59:59')
+     , (18,'2026-04-16',NULL,NULL,8500000.00,'KRW',NULL,'2026-04-16 23:59:59','2026-04-16 23:59:59');

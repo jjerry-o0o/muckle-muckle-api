@@ -2,6 +2,7 @@ package com.future.micklemuckle.modules.ledger.dto;
 
 import com.future.micklemuckle.modules.ledger.entity.LedgerEntry;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 public record LedgerEntryDailySumResponse(
         LocalDate entryDate,
         String entryType,
-        int amount
+        BigDecimal amount
 ) {
     public static LedgerEntryDailySumResponse fromEntity(LedgerEntry entity) {
             return new LedgerEntryDailySumResponse(
