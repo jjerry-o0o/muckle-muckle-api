@@ -22,3 +22,7 @@ spring:
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+
+jwt:
+  secret: this-is-mickle-muckle-jwt-secret-key-must-be-at-least-64-characters-long
+  expiration: 86400000
