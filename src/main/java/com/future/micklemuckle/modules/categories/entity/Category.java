@@ -25,6 +25,9 @@ public class Category extends BaseTimeEntity {
     private Long id;
 
     @NotNull
+    @Column(name = "user_id")
+    private Long userId;
+    @NotNull
     private String name;
     @NotNull
     private String color;

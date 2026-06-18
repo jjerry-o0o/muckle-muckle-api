@@ -5,6 +5,7 @@ import com.future.micklemuckle.modules.ledger.service.LedgerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Slice;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,44 +30,44 @@ public class LedgerController {
     }
 
     @GetMapping("/month/{targetYm}")
-    public ResponseEntity<List<LedgerEntrySummaryResponse>> getLedgerEntriesByMonth(@PathVariable String targetYm){
-        List<LedgerEntrySummaryResponse> response =  ledgerService.getLedgerEntriesByMonth(targetYm);
+    public ResponseEntity<List<LedgerEntrySummaryResponse>> getLedgerEntriesByMonth(@AuthenticationPrincipal Long userId, @PathVariable String targetYm){
+        List<LedgerEntrySummaryResponse> response =  ledgerService.getLedgerEntriesByMonth(userId, targetYm);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/List/{pageNum}")
-    public ResponseEntity<Slice<LedgerEntryDetailResponse>> getLedgerEntriesByPagination(@PathVariable int pageNum){
-        Slice<LedgerEntryDetailResponse> response = ledgerService.getLedgerEntriesByPagination(pageNum);
+    public ResponseEntity<Slice<LedgerEntryDetailResponse>> getLedgerEntriesByPagination(@AuthenticationPrincipal Long userId, @PathVariable int pageNum){
+        Slice<LedgerEntryDetailResponse> response = ledgerService.getLedgerEntriesByPagination(userId, pageNum);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/month/sum/{targetYm}")
-    public ResponseEntity<List<LedgerEntryDailySumResponse>> getLedgerEntriesDailySum(@PathVariable String targetYm){
-        List<LedgerEntryDailySumResponse> response =  ledgerService.getLedgerEntriesDailySum(targetYm);
+    public ResponseEntity<List<LedgerEntryDailySumResponse>> getLedgerEntriesDailySum(@AuthenticationPrincipal Long userId, @PathVariable String targetYm){
+        List<LedgerEntryDailySumResponse> response =  ledgerService.getLedgerEntriesDailySum(userId, targetYm);
         return ResponseEntity.ok(response);
     }
 
     @PostMapping("")
-    public ResponseEntity<Long> saveLedgerEntry(@RequestBody CreateLedgerEntryRequest reqDto){
-        Long response = ledgerService.saveLedgerEntry(reqDto);
+    public ResponseEntity<Long> saveLedgerEntry(@AuthenticationPrincipal Long userId, @RequestBody CreateLedgerEntryRequest reqDto){
+        Long response = ledgerService.saveLedgerEntry(userId, reqDto);
         return ResponseEntity.ok(response);
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Long> updateLedgerEntry(@PathVariable Long id, @RequestBody UpdateLedgerEntryRequest reqDto){
-        Long response = ledgerService.updateLedgerEntry(id, reqDto);
+    public ResponseEntity<Long> updateLedgerEntry(@AuthenticationPrincipal Long userId, @PathVariable Long id, @RequestBody UpdateLedgerEntryRequest reqDto){
+        Long response = ledgerService.updateLedgerEntry(userId, id, reqDto);
         return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteLedgerEntry(@PathVariable Long id) {
-        ledgerService.deleteLedgerEntry(id);
+    public ResponseEntity<Void> deleteLedgerEntry(@AuthenticationPrincipal Long userId, @PathVariable Long id) {
+        ledgerService.deleteLedgerEntry(userId, id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/date/{targetDate}")
-    public ResponseEntity<List<LedgerEntryDetailResponse>> getLedgerEntriesByDate(@PathVariable String targetDate){
-        List<LedgerEntryDetailResponse> responses = ledgerService.getLedgerEntriesByDate(targetDate);
+    public ResponseEntity<List<LedgerEntryDetailResponse>> getLedgerEntriesByDate(@AuthenticationPrincipal Long userId, @PathVariable String targetDate){
+        List<LedgerEntryDetailResponse> responses = ledgerService.getLedgerEntriesByDate(userId, targetDate);
         return ResponseEntity.ok(responses);
     }
 

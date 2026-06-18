@@ -4,6 +4,7 @@ import com.future.micklemuckle.modules.categories.dto.CategoriesResponse;
 import com.future.micklemuckle.modules.categories.service.CategoriesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,8 +32,8 @@ public class CategoriesController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CategoriesResponse>> getAll() {
-        List<CategoriesResponse> response = categoriesService.findAll();
+    public ResponseEntity<List<CategoriesResponse>> getAll(@AuthenticationPrincipal Long userId) {
+        List<CategoriesResponse> response = categoriesService.findAllByUserId(userId);
         return ResponseEntity.ok(response);
     }
 }

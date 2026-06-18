@@ -30,6 +30,9 @@ public class LedgerEntry extends BaseTimeEntity {
     private Long id;
 
     @NotNull
+    @Column(name = "user_id")
+    private Long userId;
+    @NotNull
     private LocalDate entryDate;
     @NotNull
     private String entryType;
@@ -48,7 +51,8 @@ public class LedgerEntry extends BaseTimeEntity {
     private PaymentMethod payment;
 
     @Builder
-    public LedgerEntry(LocalDate entryDate, String entryType, BigDecimal amount, String title, String memo, Category category, PaymentMethod payment ) {
+    public LedgerEntry(Long userId, LocalDate entryDate, String entryType, BigDecimal amount, String title, String memo, Category category, PaymentMethod payment ) {
+        this.userId = userId;
         this.entryDate = entryDate;
         this.entryType = entryType;
         this.amount = amount;

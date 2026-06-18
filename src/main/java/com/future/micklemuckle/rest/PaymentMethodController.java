@@ -4,6 +4,7 @@ import com.future.micklemuckle.modules.paymentMethod.dto.PaymentMethodResponse;
 import com.future.micklemuckle.modules.paymentMethod.service.PaymentMethodService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,8 +25,8 @@ public class PaymentMethodController {
     private final PaymentMethodService paymentMethodService;
 
     @GetMapping
-    public ResponseEntity<List<PaymentMethodResponse>> getAll() {
-        List<PaymentMethodResponse> response = paymentMethodService.findAll();
+    public ResponseEntity<List<PaymentMethodResponse>> getAll(@AuthenticationPrincipal Long userId) {
+        List<PaymentMethodResponse> response = paymentMethodService.findAllByUserId(userId);
         return ResponseEntity.ok().body(response);
     }
 }

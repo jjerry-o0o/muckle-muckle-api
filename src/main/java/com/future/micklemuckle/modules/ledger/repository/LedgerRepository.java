@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * LedgerRepository
@@ -19,18 +20,21 @@ import java.util.List;
  */
 public interface LedgerRepository extends JpaRepository<LedgerEntry, Long> {
 
-    List<LedgerEntry> findByEntryDateBetween(LocalDate start, LocalDate end);
+    Optional<LedgerEntry> findByUserIdAndId(Long userId, Long id);
 
-    @Query("SELECT l FROM LedgerEntry l")
-    Slice<LedgerEntry> findWithSlice(Pageable pageable);
+    List<LedgerEntry> findByUserIdAndEntryDateBetween(Long userId, LocalDate start, LocalDate end);
+
+    @Query("SELECT l FROM LedgerEntry l WHERE l.userId = :userId")
+    Slice<LedgerEntry> findByUserIdWithSlice(Long userId, Pageable pageable);
 
     @Query("SELECT l.entryDate as entryDate, l.entryType as entryType, SUM(l.amount) as amount" +
             " FROM LedgerEntry l" +
-            " WHERE l.entryDate >= :start" +
+            " WHERE l.userId = :userId" +
+            " AND l.entryDate >= :start" +
             " AND l.entryDate <= :end" +
             " GROUP BY l.entryDate, l.entryType" +
             " ORDER BY l.entryDate ASC, l.entryType DESC")
-    List<LedgerSumProjection> findAmountSumByDateAndType(LocalDate start, LocalDate end);
+    List<LedgerSumProjection> findByUserIdAmountSumByDateAndType(Long userId, LocalDate start, LocalDate end);
 
-    List<LedgerEntry> findByEntryDate(LocalDate targetDate);
+    List<LedgerEntry> findByUserIdAndEntryDate(Long userId, LocalDate targetDate);
 }

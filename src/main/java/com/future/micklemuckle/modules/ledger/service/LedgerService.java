@@ -42,12 +42,13 @@ public class LedgerService {
     }
 
     @Transactional
-    public Long saveLedgerEntry(CreateLedgerEntryRequest reqDto) {
+    public Long saveLedgerEntry(Long userId, CreateLedgerEntryRequest reqDto) {
 
         Category category = getCategory(reqDto.getCategoryId());
         PaymentMethod payment = getPaymentMethod(reqDto.getPaymentId());
 
         LedgerEntry ledgerEntry = LedgerEntry.builder()
+                .userId(userId)
                 .entryDate(reqDto.getEntryDate())
                 .entryType(reqDto.getEntryType())
                 .amount(reqDto.getAmount())
@@ -61,9 +62,9 @@ public class LedgerService {
     }
 
     @Transactional
-    public Long updateLedgerEntry(Long id, UpdateLedgerEntryRequest req) {
+    public Long updateLedgerEntry(Long userId, Long id, UpdateLedgerEntryRequest req) {
 
-        LedgerEntry entry = ledgerRepository.findById(id)
+        LedgerEntry entry = ledgerRepository.findByUserIdAndId(userId, id)
                 .orElseThrow(() -> new NotFoundException(ErrorCode.LEDGER_NOT_FOUND));
         Category category = getCategory(req.getCategoryId());
         PaymentMethod payment = getPaymentMethod(req.getPaymentId());
@@ -95,31 +96,31 @@ public class LedgerService {
         return payment;
     }
 
-    public List<LedgerEntrySummaryResponse> getLedgerEntriesByMonth(String targetYm) {
+    public List<LedgerEntrySummaryResponse> getLedgerEntriesByMonth(Long userId, String targetYm) {
         YearMonth ym = YearMonth.parse(targetYm);
 
         LocalDate startDate = ym.atDay(1);
         LocalDate endDate = ym.atEndOfMonth();
 
-        return ledgerRepository.findByEntryDateBetween(startDate, endDate)
+        return ledgerRepository.findByUserIdAndEntryDateBetween(userId, startDate, endDate)
                 .stream()
                 .map(LedgerEntrySummaryResponse::fromEntity)
                 .toList();
     }
 
-    public Slice<LedgerEntryDetailResponse> getLedgerEntriesByPagination(int pageNum) {
+    public Slice<LedgerEntryDetailResponse> getLedgerEntriesByPagination(Long userId, int pageNum) {
         Pageable pageable = PageRequest.of(pageNum, 20, Sort.by(Sort.Order.desc("entryDate"), Sort.Order.desc("entryType"), Sort.Order.desc("title")));
-                return ledgerRepository.findWithSlice(pageable)
+                return ledgerRepository.findByUserIdWithSlice(userId, pageable)
                         .map(LedgerEntryDetailResponse::fromEntity);
     }
 
-    public List<LedgerEntryDailySumResponse> getLedgerEntriesDailySum(String targetYm) {
+    public List<LedgerEntryDailySumResponse> getLedgerEntriesDailySum(Long userId, String targetYm) {
         YearMonth ym = YearMonth.parse(targetYm);
 
         LocalDate startDate = ym.atDay(1);
         LocalDate endDate = ym.atEndOfMonth();
 
-        return ledgerRepository.findAmountSumByDateAndType(startDate, endDate)
+        return ledgerRepository.findByUserIdAmountSumByDateAndType(userId, startDate, endDate)
                 .stream()
                 .map(result -> new LedgerEntryDailySumResponse(
                         result.getEntryDate(),
@@ -130,16 +131,16 @@ public class LedgerService {
     }
 
     @Transactional
-    public void deleteLedgerEntry(Long id) {
-        LedgerEntry entry = ledgerRepository.findById(id)
+    public void deleteLedgerEntry(Long userId, Long id) {
+        LedgerEntry entry = ledgerRepository.findByUserIdAndId(userId, id)
                 .orElseThrow(() -> new NotFoundException(ErrorCode.LEDGER_NOT_FOUND));
 
         ledgerRepository.delete(entry);
     }
 
-    public List<LedgerEntryDetailResponse> getLedgerEntriesByDate(String targetDate) {
+    public List<LedgerEntryDetailResponse> getLedgerEntriesByDate(Long userId, String targetDate) {
         LocalDate date = LocalDate.parse(targetDate);
-        return ledgerRepository.findByEntryDate(date)
+        return ledgerRepository.findByUserIdAndEntryDate(userId, date)
                 .stream()
                 .map(LedgerEntryDetailResponse::fromEntity)
                 .toList();

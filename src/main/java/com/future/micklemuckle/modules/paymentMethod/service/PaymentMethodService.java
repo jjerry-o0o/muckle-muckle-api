@@ -19,8 +19,8 @@ public class PaymentMethodService {
 
     private final PaymentMethodRepository paymentMethodRepository;
 
-    public List<PaymentMethodResponse> findAll() {
-        return paymentMethodRepository.findAll()
+    public List<PaymentMethodResponse> findAllByUserId(Long userId) {
+        return paymentMethodRepository.findAllByUserId(userId)
                 .stream()
                 .map(PaymentMethodResponse::fromEntity)
                 .toList();

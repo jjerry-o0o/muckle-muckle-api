@@ -29,8 +29,8 @@ public class CategoriesService {
         return CategoriesResponse.fromEntity(category);
     }
 
-    public List<CategoriesResponse> findAll() {
-        return categoriesRepository.findAll()
+    public List<CategoriesResponse> findAllByUserId(Long userId) {
+        return categoriesRepository.findAllByUserId(userId)
                 .stream()
                 .map(CategoriesResponse::fromEntity)
                 .toList();

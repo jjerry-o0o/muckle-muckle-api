@@ -1,5 +1,7 @@
 package com.future.micklemuckle.modules.auth.service;
 
+import com.future.micklemuckle.common.exception.BusinessException;
+import com.future.micklemuckle.common.exception.ErrorCode;
 import com.future.micklemuckle.config.JwtProvider;
 import com.future.micklemuckle.modules.auth.dto.LoginRequest;
 import com.future.micklemuckle.modules.auth.dto.LoginResponse;
@@ -20,7 +22,7 @@ public class AuthService {
 
     public void signup(SignupRequest request) {
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
-            throw new IllegalArgumentException("이미 사용 중인 이메일입니다.");
+            throw new BusinessException(ErrorCode.AUTH_ALREADY_EXISTS_EMAIL);
         }
 
         User user = User.builder()
@@ -34,10 +36,10 @@ public class AuthService {
 
     public LoginResponse login(LoginRequest request) {
         User user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 이메일입니다."));
+                .orElseThrow(() -> new BusinessException(ErrorCode.AUTH_USER_NOT_FOUND));
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+            throw new BusinessException(ErrorCode.AUTH_INVALID_PASSWORD);
         }
 
         String token = jwtProvider.createToken(user.getId());

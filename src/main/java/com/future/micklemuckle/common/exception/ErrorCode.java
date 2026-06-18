@@ -22,7 +22,11 @@ public enum ErrorCode {
     CATEGORY_LIST_NOT_FOUND(HttpStatus.NOT_FOUND, "C002", "카테고리 목록 조회에 실패했습니다."),
 
     PAYMENT_NOT_FOUND(HttpStatus.NOT_FOUND, "P001", "요청하신 결제수단 항목을 찾을 수 없습니다."),
-    PAYMENT_LIST_NOT_FOUND(HttpStatus.NOT_FOUND, "P002", "결제수단 목록 조회에 실패했습니다.")
+    PAYMENT_LIST_NOT_FOUND(HttpStatus.NOT_FOUND, "P002", "결제수단 목록 조회에 실패했습니다."),
+
+    AUTH_ALREADY_EXISTS_EMAIL(HttpStatus.CONFLICT, "A001","이미 사용 중인 이메일입니다."),
+    AUTH_USER_NOT_FOUND(HttpStatus.UNAUTHORIZED, "A002", "존재하지 않는 이메일입니다."),
+    AUTH_INVALID_PASSWORD(HttpStatus.UNAUTHORIZED, "A003", "비밀번호가 일치하지 않습니다.")
 
     ;
 
