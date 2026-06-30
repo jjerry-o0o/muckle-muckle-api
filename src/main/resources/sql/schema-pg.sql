@@ -107,6 +107,17 @@ CREATE TABLE IF NOT EXISTS asset_current_value (
     CONSTRAINT fk_asset_current_value_asset FOREIGN KEY (asset_id) REFERENCES asset (asset_id)
 );
 
+-- 이메일 인증
+CREATE TABLE IF NOT EXISTS email_verification (
+    id          BIGSERIAL       PRIMARY KEY,
+    email       VARCHAR(255)    NOT NULL,
+    code        VARCHAR(6)      NOT NULL,
+    purpose     VARCHAR(20)     NOT NULL,
+    verified    BOOLEAN         NOT NULL DEFAULT FALSE,
+    expires_at  TIMESTAMP       NOT NULL,
+    created_at  TIMESTAMP       NOT NULL DEFAULT NOW()
+);
+
 -- 자산 스냅샷
 CREATE TABLE IF NOT EXISTS asset_daily_snapshot (
     snapshot_id             BIGSERIAL       PRIMARY KEY,

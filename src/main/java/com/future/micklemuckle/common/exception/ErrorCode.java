@@ -27,6 +27,9 @@ public enum ErrorCode {
     AUTH_ALREADY_EXISTS_EMAIL(HttpStatus.CONFLICT, "A001","이미 사용 중인 이메일입니다."),
     AUTH_USER_NOT_FOUND(HttpStatus.UNAUTHORIZED, "A002", "존재하지 않는 이메일입니다."),
     AUTH_INVALID_PASSWORD(HttpStatus.UNAUTHORIZED, "A003", "비밀번호가 일치하지 않습니다."),
+    AUTH_EMAIL_NOT_VERIFIED(HttpStatus.UNAUTHORIZED, "A004", "이메일 인증이 완료되지 않았습니다."),
+    AUTH_INVALID_CODE(HttpStatus.BAD_REQUEST, "A005", "인증코드가 올바르지 않습니다."),
+    AUTH_CODE_EXPIRED(HttpStatus.BAD_REQUEST, "A006", "인증코드가 만료되었습니다."),
 
     ASSET_NOT_FOUND(HttpStatus.NOT_FOUND, "AS001", "자산 항목을 찾을 수 없습니다."),
     ASSET_CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "AS002", "자산 카테고리를 찾을 수 없습니다.")
