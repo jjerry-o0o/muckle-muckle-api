@@ -18,6 +18,7 @@ import java.util.List;
 public class JwtFilter extends OncePerRequestFilter {
 
     private final JwtProvider jwtProvider;
+    private static final Long DEMO_USER_ID = 1L;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -27,17 +28,20 @@ public class JwtFilter extends OncePerRequestFilter {
 
         if (header != null && header.startsWith("Bearer ")) {
             String token = header.substring(7);
-
+            // fixMe - 토큰이 만료된 경우 else 로직 추가하기
             if (jwtProvider.isValid(token)) {
-                Long userId = jwtProvider.getUserId(token);
-
-                UsernamePasswordAuthenticationToken auth =
-                        new UsernamePasswordAuthenticationToken(userId, null, List.of());
-
-                SecurityContextHolder.getContext().setAuthentication(auth);
+                setAuthentication(jwtProvider.getUserId(token));
             }
+        } else if ("GET".equalsIgnoreCase(request.getMethod())) {
+            setAuthentication(DEMO_USER_ID);
         }
 
         filterChain.doFilter(request, response);
+    }
+
+    private void setAuthentication(Long userId) {
+        UsernamePasswordAuthenticationToken auth =
+                new UsernamePasswordAuthenticationToken(userId, null, List.of());
+        SecurityContextHolder.getContext().setAuthentication(auth);
     }
 }
